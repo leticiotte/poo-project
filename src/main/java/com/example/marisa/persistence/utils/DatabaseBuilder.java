@@ -21,6 +21,7 @@ public class DatabaseBuilder {
     private void buildTables() {
         try (Statement stmt = DatabaseConnectionFactory.createStatement()) {
             stmt.addBatch(createAddressTableSql());
+            stmt.addBatch(createCashierTableSql());
             stmt.executeBatch();
 
             System.out.println("Database successfully created.");
@@ -39,6 +40,20 @@ public class DatabaseBuilder {
         builder.append("city TEXT NOT NULL, \n");
         builder.append("state TEXT NOT NULL, \n");
         builder.append("zipCode TEXT, ");
+        builder.append("); \n");
+
+        System.out.println(builder.toString());
+        return builder.toString();
+    }
+
+    private String createCashierTableSql(){
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("CREATE TABLE cashier (\n");
+        builder.append("id INTEGER PRIMARY KEY, \n");
+        builder.append("openingBalance numeric(6,2) NOT NULL, \n");
+        builder.append("finalBalance numeric(6,2) NOT NULL, \n");
+        builder.append("status TEXT NOT NULL");
         builder.append("); \n");
 
         System.out.println(builder.toString());
