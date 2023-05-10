@@ -3,7 +3,7 @@ package com.example.marisa.model.entities;
 public class Customer {
     String name;
     String cpf;
-    String address;
+    Address address;
     String phone;
     String email;
 }
