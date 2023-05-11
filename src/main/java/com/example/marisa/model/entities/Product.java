@@ -12,7 +12,8 @@ public class Product {
     Integer minimumStock;
     String creationDate;
 
-    public Product(Integer id, String name, Float sellPrice, Float buyPrice, Integer quantity, String size, String facet, String category, Integer minimumStock, String creationDate) {
+    public Product(Integer id, String name, Float sellPrice, Float buyPrice, Integer quantity, String size,
+            String facet, String category, Integer minimumStock, String creationDate) {
         this.id = id;
         this.name = name;
         this.sellPrice = sellPrice;

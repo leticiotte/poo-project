@@ -1,6 +1,7 @@
 package com.example.marisa.model.entities;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Cashier {
     private int id;
@@ -16,8 +17,8 @@ public class Cashier {
     }
     public void openCashier(){}
 
-    public void closeChasier(){}
-
+    public void closeCashier() {
+    }
     public void calculateDaySales() {}
 
     public int getId() {
