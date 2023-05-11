@@ -6,7 +6,6 @@ public class Cashier {
     private int id;
     private float openingBalance;
     private float finalBalance;
-    private List<Sale> sales = new ArrayList<>();
     private String status;
 
     public void openCashier(){}
