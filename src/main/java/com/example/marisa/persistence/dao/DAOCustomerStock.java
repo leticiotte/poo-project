@@ -1,8 +1,6 @@
 package com.example.marisa.persistence.dao;
 
-import com.example.marisa.model.entities.Address;
 import com.example.marisa.model.entities.Customer;
-import com.example.marisa.model.entities.Product;
 import com.example.marisa.persistence.utils.DAO;
 import com.example.marisa.persistence.utils.DatabaseConnectionFactory;
 
@@ -80,11 +78,15 @@ public class DAOCustomerStock implements DAO<Customer, Integer> {
         rs.getInt("id"),
         rs.getString("name"),
         rs.getString("cpf"),
-        rs.getInt("address"),
+        rs.getString("complement"),
+        rs.getString("street"),
+        rs.getString("zipcode"),
+        rs.getInt("number"),
+        rs.getString("city"),
+        rs.getString("country"),
         rs.getString("phone"),
         rs.getString("email"),
-        rs.getString("status")
-    );
+        rs.getString("status"));
     return contact;
   }
 }
