@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Customer {
+    Integer id;
     String name;
     String cpf;
     Address address;
@@ -11,7 +12,8 @@ public class Customer {
     String email;
     String status;
 
-    public Customer(String name, String cpf, Address address, String phone, String email, String status) {
+    public Customer(Integer id, String name, String cpf, Address address, String phone, String email, String status) {
+        this.id = id;
         this.name = name;
         this.cpf = cpf;
         this.address = address;
