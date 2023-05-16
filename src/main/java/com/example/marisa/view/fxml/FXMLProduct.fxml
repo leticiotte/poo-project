@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="740.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.marisa.controller.ProductController">
+   <children>
+      <AnchorPane prefHeight="70.0" prefWidth="920.0" style="-fx-background-color: #C3C49E;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="79.0" layoutY="24.0" text="Produtos" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="14.0">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="70.0" prefHeight="253.0" prefWidth="920.0" style="-fx-border-bottom-color: black;" AnchorPane.bottomAnchor="417.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+         <children>
+            <Label layoutX="84.0" layoutY="14.0" text="Cadastro" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="14.0">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <Label layoutX="61.0" layoutY="71.0" text="Nome:" AnchorPane.leftAnchor="61.0" AnchorPane.topAnchor="71.0" />
+            <TextField fx:id="inpName" layoutX="153.0" layoutY="66.0" AnchorPane.leftAnchor="153.0" AnchorPane.topAnchor="66.0" />
+            <Label layoutX="61.0" layoutY="111.0" text="Preco compra:" AnchorPane.leftAnchor="61.0" AnchorPane.topAnchor="111.0" />
+            <TextField fx:id="inpBuyPrice" layoutX="153.0" layoutY="106.0" AnchorPane.leftAnchor="153.0" AnchorPane.topAnchor="106.0" />
+            <Label layoutX="61.0" layoutY="151.0" text="Preco venda:" AnchorPane.leftAnchor="61.0" AnchorPane.topAnchor="151.0" />
+            <TextField fx:id="inpSellPrice" layoutX="153.0" layoutY="146.0" AnchorPane.leftAnchor="153.0" AnchorPane.topAnchor="146.0" />
+            <Label layoutX="332.0" layoutY="71.0" text="Tamanho:" AnchorPane.leftAnchor="332.0" AnchorPane.topAnchor="71.0" />
+            <TextField fx:id="inpSize" layoutX="424.0" layoutY="67.0" AnchorPane.leftAnchor="424.0" AnchorPane.topAnchor="67.0" />
+            <Label layoutX="332.0" layoutY="110.0" text="Faceta:" AnchorPane.leftAnchor="332.0" AnchorPane.topAnchor="110.0" />
+            <TextField fx:id="inpFacet" layoutX="424.0" layoutY="105.0" AnchorPane.leftAnchor="424.0" AnchorPane.topAnchor="105.0" />
+            <Label layoutX="332.0" layoutY="150.0" text="Categoria:" AnchorPane.leftAnchor="332.0" AnchorPane.topAnchor="150.0" />
+            <TextField fx:id="inpCategory" layoutX="424.0" layoutY="145.0" AnchorPane.leftAnchor="424.0" AnchorPane.topAnchor="145.0" />
+            <Label layoutX="607.0" layoutY="70.0" text="Estoque minimo:" AnchorPane.leftAnchor="607.0" AnchorPane.topAnchor="70.0" />
+            <TextField fx:id="inpmMnimumStock" layoutX="699.0" layoutY="65.0" AnchorPane.leftAnchor="699.0" AnchorPane.topAnchor="65.0" />
+            <Label layoutX="607.0" layoutY="109.0" text="Data entrada:" AnchorPane.leftAnchor="607.0" AnchorPane.topAnchor="109.0" />
+            <DatePicker fx:id="inpCreationDate" layoutX="699.0" layoutY="105.0" prefHeight="26.0" prefWidth="160.0" AnchorPane.leftAnchor="699.0" AnchorPane.topAnchor="105.0" />
+            <Button fx:id="btnRegister" layoutX="756.0" layoutY="145.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="103.0" text="Cadastrar" AnchorPane.leftAnchor="756.0" AnchorPane.topAnchor="145.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="269.0" prefHeight="471.0" prefWidth="920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="269.0">
+         <children>
+            <Label text="Produtos" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="14.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TableView layoutX="56.0" layoutY="58.0" prefHeight="358.0" prefWidth="798.0" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="61.0" AnchorPane.topAnchor="60.0">
+              <columns>
+                <TableColumn prefWidth="98.0" text="Id" />
+                <TableColumn prefWidth="110.0" text="Nome" />
+                  <TableColumn prefWidth="85.0" text="Preco compra" />
+                  <TableColumn prefWidth="72.0" text="Preco venda" />
+                  <TableColumn minWidth="0.0" prefWidth="100.0" text="Tamanho" />
+                  <TableColumn prefWidth="53.0" text="Faceta" />
+                  <TableColumn prefWidth="77.0" text="Categoria" />
+                  <TableColumn prefWidth="97.0" text="Estoque minimo" />
+                  <TableColumn minWidth="0.0" prefWidth="105.0" text="Data entrada" />
+              </columns>
+            </TableView>
+            <Button fx:id="btnStockView" disable="true" layoutX="756.0" layoutY="432.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="126.0" text="Visualizar estoque" AnchorPane.rightAnchor="61.0" AnchorPane.topAnchor="432.0" />
+         </children></AnchorPane>
+   </children>
+</AnchorPane>
