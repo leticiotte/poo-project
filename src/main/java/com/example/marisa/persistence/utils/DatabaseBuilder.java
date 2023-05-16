@@ -53,14 +53,14 @@ public class DatabaseBuilder {
         builder.append("CREATE TABLE Product (\n");
         builder.append("id INTEGER PRIMARY KEY, \n");
         builder.append("name TEXT NOT NULL, \n");
-        builder.append("sellPrice NUMBER, \n");
+        builder.append("sellPrice NUMBER NOT NULL, \n");
         builder.append("buyPrice NUMBER NOT NULL, \n");
-        builder.append("quantity INTEGER NOT NULL, \n");
-        builder.append("facet TEXT NOT NULL, \n");
+        builder.append("quantity INTEGER, \n");
+        builder.append("facet TEXT, \n");
         builder.append("size TEXT NOT NULL, \n");
         builder.append("category TEXT NOT NULL, \n");
-        builder.append("minimumStock INTEGER NOT NULL, \n");
-        builder.append("creationDate DATE NOT NULL, \n");
+        builder.append("minimumStock INTEGER, \n");
+        builder.append("creationDate DATE, \n");
         builder.append("); \n");
 
         System.out.println(builder.toString());
