@@ -33,6 +33,10 @@ public class Customer {
         this.zipcode = zipcode;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }

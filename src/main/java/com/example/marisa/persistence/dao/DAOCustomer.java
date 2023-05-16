@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class DAOCustomerStock implements DAO<Customer, Integer> {
+public class DAOCustomer implements DAO<Customer, Integer> {
 
   @Override
   public void save(Customer entity) {
@@ -35,7 +35,7 @@ public class DAOCustomerStock implements DAO<Customer, Integer> {
 
   @Override
   public Optional<Customer> select(Integer key) {
-    String sql = "SELECT * FROM product WHERE id = ?";
+    String sql = "SELECT * FROM customer WHERE id = ?";
     List<Customer> customers = new ArrayList<>();
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {

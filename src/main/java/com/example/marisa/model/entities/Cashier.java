@@ -1,8 +1,5 @@
 package com.example.marisa.model.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Cashier {
     private int id;
     private float openingBalance;
@@ -15,11 +12,15 @@ public class Cashier {
         this.setFinalBalance(finalBalance);
         this.setStatus(status);
     }
-    public void openCashier(){}
+
+    public void openCashier() {
+    }
 
     public void closeCashier() {
     }
-    public void calculateDaySales() {}
+
+    public void calculateDaySales() {
+    }
 
     public int getId() {
         return id;
