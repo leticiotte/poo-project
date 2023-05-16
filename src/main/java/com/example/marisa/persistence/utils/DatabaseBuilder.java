@@ -7,14 +7,14 @@ import java.sql.Statement;
 
 public class DatabaseBuilder {
 
-    public void buildDatabaseIfMissing(){
-        if(!isDatabaseAvailable()){
+    public void buildDatabaseIfMissing() {
+        if (!isDatabaseAvailable()) {
             System.out.println("Database is missing. Building database: \n");
             buildTables();
         }
     }
 
-    private boolean isDatabaseAvailable(){
+    private boolean isDatabaseAvailable() {
         return Files.exists(Paths.get("database.db"));
     }
 
@@ -22,6 +22,7 @@ public class DatabaseBuilder {
         try (Statement stmt = DatabaseConnectionFactory.createStatement()) {
             stmt.addBatch(createAddressTableSql());
             stmt.addBatch(createCashierTableSql());
+            stmt.addBatch(createProductTabel());
             stmt.executeBatch();
 
             System.out.println("Database successfully created.");
@@ -30,7 +31,7 @@ public class DatabaseBuilder {
         }
     }
 
-    private String createAddressTableSql(){
+    private String createAddressTableSql() {
         StringBuilder builder = new StringBuilder();
 
         builder.append("CREATE TABLE Address (\n");
@@ -46,7 +47,27 @@ public class DatabaseBuilder {
         return builder.toString();
     }
 
-    private String createCashierTableSql(){
+    private String createProductTabel() {
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("CREATE TABLE Product (\n");
+        builder.append("id INTEGER PRIMARY KEY, \n");
+        builder.append("name TEXT NOT NULL, \n");
+        builder.append("sellPrice NUMBER, \n");
+        builder.append("buyPrice NUMBER NOT NULL, \n");
+        builder.append("quantity INTEGER NOT NULL, \n");
+        builder.append("facet TEXT NOT NULL, \n");
+        builder.append("size TEXT NOT NULL, \n");
+        builder.append("category TEXT NOT NULL, \n");
+        builder.append("minimumStock INTEGER NOT NULL, \n");
+        builder.append("creationDate DATE NOT NULL, \n");
+        builder.append("); \n");
+
+        System.out.println(builder.toString());
+        return builder.toString();
+    }
+
+    private String createCashierTableSql() {
         StringBuilder builder = new StringBuilder();
 
         builder.append("CREATE TABLE cashier (\n");
