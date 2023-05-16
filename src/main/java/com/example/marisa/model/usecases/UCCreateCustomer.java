@@ -16,13 +16,13 @@ public class UCCreateCustomer {
 
     public void createCustomer(Customer customer) {
         if (this.daoCustomer.select(customer.getId()).isPresent()) {
-            throw new Error("Produto já cadastrado no sistema");
+            throw new Error("Cliente já cadastrado no sistema");
         }
 
         ArrayList<String> params = new ArrayList<>(Arrays.asList("id", "name", "cpf", "phone", "email", "status",
                 "number", "street", "complement", "city", "country", "zipcode"));
         if (!Validator.validateFields(customer, params)) {
-            throw new Error("Produto não está com todos os campos obrigatórios preenchidos.");
+            throw new Error("Cliente não está com todos os campos obrigatórios preenchidos.");
         }
 
         this.daoCustomer.save(customer);
