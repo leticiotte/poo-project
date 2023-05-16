@@ -67,13 +67,13 @@ public class DatabaseBuilder {
         return builder.toString();
     }
 
-    private String createCashierTableSql() {
+    private String createCashierTableSql(){
         StringBuilder builder = new StringBuilder();
 
         builder.append("CREATE TABLE cashier (\n");
         builder.append("id INTEGER PRIMARY KEY, \n");
         builder.append("openingBalance numeric(6,2) NOT NULL, \n");
-        builder.append("finalBalance numeric(6,2) NOT NULL, \n");
+        builder.append("finalBalance numeric(6,2) NULL, \n");
         builder.append("status TEXT NOT NULL");
         builder.append("); \n");
 
