@@ -1,4 +1,4 @@
-package com.example.marisa.model.usecases;
+package com.example.marisa.model.usecases.Customer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
