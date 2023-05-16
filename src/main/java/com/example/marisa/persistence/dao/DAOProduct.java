@@ -100,7 +100,7 @@ public class DAOProduct implements DAO<Product, Integer> {
 
   @Override
   public List<Product> selectBy(String field, Object value) {
-    String sql = "SELECT * FROM product WHERE id = ?";
+    String sql = "SELECT * FROM product WHERE " + field + " = ?";
     List<Product> products = new ArrayList<>();
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
