@@ -26,6 +26,20 @@ public class Product {
         this.creationDate = creationDate;
     }
 
+    public Boolean validateFields() {
+        if (this.name != null) {
+            return false;
+        } else if (this.sellPrice != null) {
+            return false;
+        } else if (this.buyPrice != null) {
+            return false;
+        } else if (this.category != null) {
+            return false;
+        }
+
+        return true;
+    }
+
     public Integer getId() {
         return id;
     }
