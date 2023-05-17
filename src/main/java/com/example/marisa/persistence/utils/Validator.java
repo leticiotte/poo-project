@@ -6,11 +6,11 @@ import java.lang.reflect.Field;
 public class Validator {
 
     public static <T> boolean validateFields(Object entity, ArrayList<String> params) {
-        Class<?> clazz = entity.getClass();
+        Class<?> classType = entity.getClass();
 
         for (String param : params) {
             try {
-                Field field = clazz.getDeclaredField(param);
+                Field field = classType.getDeclaredField(param);
                 field.setAccessible(true);
                 Object value = field.get(param);
 
