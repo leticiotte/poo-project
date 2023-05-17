@@ -15,22 +15,52 @@ public class DAOCustomer implements DAO<Customer, Integer> {
 
   @Override
   public void save(Customer entity) {
-    throw new UnsupportedOperationException("Unimplemented method 'save'");
+    String sql = "INSERT INTO Customer(name, cpf, phone, email, status, number, street, complement, city, country, zipcode) "
+        +
+        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
+      setEntityToPreparedStatement(entity, stmt);
+      stmt.executeQuery();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
   public void update(Customer entity) {
-    throw new UnsupportedOperationException("Unimplemented method 'update'");
+    String sql = "UPDATE Product SET name = ?, sellPrice = ?, buyPrice = ?, quantity = ?, facet = ?, " +
+        "category = ?, minimumStock = ?, size = ? WHERE id = ?";
+
+    try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
+      setEntityToPreparedStatement(entity, stmt);
+      stmt.setInt(9, entity.getId());
+      stmt.executeQuery();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
   public void saveOrUpdate(Customer entity) {
-    throw new UnsupportedOperationException("Unimplemented method 'saveOrUpdate'");
+    Optional<Customer> result = select(entity.getId());
+    if (result.isPresent()) {
+      update(entity);
+    } else {
+      save(entity);
+    }
   }
 
   @Override
   public void delete(Integer key) {
-    throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    String sql = "UPDATE customer SET active = FALSE WHERE id = ?";
+
+    try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
+      stmt.setInt(1, key);
+      stmt.executeQuery();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   @Override
@@ -70,7 +100,20 @@ public class DAOCustomer implements DAO<Customer, Integer> {
 
   @Override
   public List<Customer> selectBy(String field, Object value) {
-    throw new UnsupportedOperationException("Unimplemented method 'selectBy'");
+    String sql = "SELECT * FROM customer WHERE " + field + " = ?";
+    List<Customer> customers = new ArrayList<>();
+
+    try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
+      stmt.setString(1, field);
+      ResultSet rs = stmt.executeQuery();
+      while (rs.next()) {
+        Customer customer = getEntityFromResultSet(rs);
+        customers.add(customer);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return customers;
   }
 
   public Customer getEntityFromResultSet(ResultSet rs) throws SQLException {
@@ -88,5 +131,21 @@ public class DAOCustomer implements DAO<Customer, Integer> {
         rs.getString("email"),
         rs.getString("status"));
     return contact;
+  }
+
+  protected void setEntityToPreparedStatement(Customer entity, PreparedStatement stmt)
+      throws SQLException {
+    stmt.setInt(1, entity.getId());
+    stmt.setString(2, entity.getName());
+    stmt.setString(3, entity.getCpf());
+    stmt.setString(4, entity.getPhone());
+    stmt.setString(5, entity.getEmail());
+    stmt.setString(6, entity.getStatus());
+    stmt.setInt(7, entity.getNumber());
+    stmt.setString(8, entity.getStreet());
+    stmt.setString(8, entity.getComplement());
+    stmt.setString(8, entity.getCity());
+    stmt.setString(8, entity.getCountry());
+    stmt.setString(8, entity.getZipcode());
   }
 }

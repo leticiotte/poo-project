@@ -19,8 +19,13 @@ public class UCCreateCustomer {
             throw new Error("Cliente já cadastrado no sistema");
         }
 
+        if ((this.daoCustomer.selectBy("cpf", customer)) != null) {
+            throw new Error("CPF já cadastrado no sistema");
+        }
+
         ArrayList<String> params = new ArrayList<>(Arrays.asList("id", "name", "cpf", "phone", "email", "status",
                 "number", "street", "complement", "city", "country", "zipcode"));
+
         if (!Validator.validateFields(customer, params)) {
             throw new Error("Cliente não está com todos os campos obrigatórios preenchidos.");
         }

@@ -1,4 +1,4 @@
-package com.example.marisa.model.usecases.Product;
+package com.example.marisa.model.usecases.product;
 
 import java.util.List;
 
