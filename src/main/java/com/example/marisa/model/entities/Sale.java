@@ -16,18 +16,7 @@ public class Sale {
     private Integer idCashier;
 
     public Sale() {
-    }
-
-    public Sale(Integer id, String nf, List<SaleItem> products, Date date, float totalDiscount, float totalValue,
-                PaymentMethodTypeEnum paymentType, Integer clientId) {
-        this.id = id;
-        this.nf = nf;
-        this.products = products;
-        this.date = date;
-        this.totalDiscount = totalDiscount;
-        this.totalValue = totalValue;
-        this.paymentType = paymentType;
-        this.clientId = clientId;
+        this.date = new Date();
     }
 
     public Integer getId() {
