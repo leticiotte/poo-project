@@ -20,33 +20,17 @@ public class DatabaseBuilder {
 
     private void buildTables() {
         try (Statement stmt = DatabaseConnectionFactory.createStatement()) {
-            stmt.addBatch(createAddressTableSql());
             stmt.addBatch(createCashierTableSql());
             stmt.addBatch(createProductTabel());
             stmt.addBatch(createChargeBackTableSql());
             stmt.addBatch(createSaleChargeBackTableSql());
+            stmt.addBatch(createCustomerTableSql());
             stmt.executeBatch();
 
             System.out.println("Database successfully created.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    private String createAddressTableSql() {
-        StringBuilder builder = new StringBuilder();
-
-        builder.append("CREATE TABLE Address (\n");
-        builder.append("id INTEGER PRIMARY KEY, \n");
-        builder.append("street TEXT NOT NULL, \n");
-        builder.append("number INTEGER, \n");
-        builder.append("city TEXT NOT NULL, \n");
-        builder.append("state TEXT NOT NULL, \n");
-        builder.append("zipCode TEXT, ");
-        builder.append("); \n");
-
-        System.out.println(builder.toString());
-        return builder.toString();
     }
 
     private String createProductTabel() {
@@ -63,13 +47,37 @@ public class DatabaseBuilder {
         builder.append("category TEXT NOT NULL, \n");
         builder.append("minimumStock INTEGER, \n");
         builder.append("creationDate DATE, \n");
+        builder.append("active BOOLEAN NOT NULL DEFAULT true");
         builder.append("); \n");
 
         System.out.println(builder.toString());
         return builder.toString();
     }
 
-    private String createCashierTableSql(){
+    private String createCustomerTableSql() {
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("CREATE TABLE customer (\n");
+        builder.append("id INTEGER PRIMARY KEY, \n");
+        builder.append("name VARCHAR(255) NOT NULL, \n");
+        builder.append("cpf VARCHAR(11) NOT NULL, \n");
+        builder.append("phone VARCHAR(20) NOT NULL, \n");
+        builder.append("email VARCHAR(255) NOT NULL, \n");
+        builder.append("status VARCHAR(20) NOT NULL, \n");
+        builder.append("number INTEGER NOT NULL, \n");
+        builder.append("street VARCHAR(255) NOT NULL, \n");
+        builder.append("complement VARCHAR(255) NULL, \n");
+        builder.append("city VARCHAR(255) NOT NULL, \n");
+        builder.append("country VARCHAR(255) NOT NULL, \n");
+        builder.append("zipcode VARCHAR(20) NOT NULL");
+        builder.append("active BOOLEAN NOT NULL DEFAULT true");
+        builder.append("); \n");
+
+        System.out.println(builder.toString());
+        return builder.toString();
+    }
+
+    private String createCashierTableSql() {
         StringBuilder builder = new StringBuilder();
 
         builder.append("CREATE TABLE cashier (\n");
