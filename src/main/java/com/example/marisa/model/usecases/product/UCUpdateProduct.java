@@ -1,4 +1,4 @@
-package com.example.marisa.model.usecases;
+package com.example.marisa.model.usecases.product;
 
 import com.example.marisa.model.entities.Product;
 import com.example.marisa.persistence.dao.DAOProduct;

@@ -1,4 +1,4 @@
-package com.example.marisa.model.usecases.Customer;
+package com.example.marisa.model.usecases.customer;
 
 import com.example.marisa.model.entities.Customer;
 import com.example.marisa.persistence.dao.DAOCustomer;
