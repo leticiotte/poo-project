@@ -23,6 +23,7 @@ public class DatabaseBuilder {
             stmt.addBatch(createAddressTableSql());
             stmt.addBatch(createCashierTableSql());
             stmt.addBatch(createProductTabel());
+            stmt.addBatch(createCustomerTableSql());
             stmt.executeBatch();
 
             System.out.println("Database successfully created.");
@@ -67,7 +68,29 @@ public class DatabaseBuilder {
         return builder.toString();
     }
 
-    private String createCashierTableSql(){
+    private String createCustomerTableSql() {
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("CREATE TABLE customer (\n");
+        builder.append("id INTEGER PRIMARY KEY, \n");
+        builder.append("name VARCHAR(255) NOT NULL, \n");
+        builder.append("cpf VARCHAR(11) NOT NULL, \n");
+        builder.append("phone VARCHAR(20) NOT NULL, \n");
+        builder.append("email VARCHAR(255) NOT NULL, \n");
+        builder.append("status VARCHAR(20) NOT NULL, \n");
+        builder.append("number INTEGER NOT NULL, \n");
+        builder.append("street VARCHAR(255) NOT NULL, \n");
+        builder.append("complement VARCHAR(255) NULL, \n");
+        builder.append("city VARCHAR(255) NOT NULL, \n");
+        builder.append("country VARCHAR(255) NOT NULL, \n");
+        builder.append("zipcode VARCHAR(20) NOT NULL");
+        builder.append("); \n");
+
+        System.out.println(builder.toString());
+        return builder.toString();
+    }
+
+    private String createCashierTableSql() {
         StringBuilder builder = new StringBuilder();
 
         builder.append("CREATE TABLE cashier (\n");
