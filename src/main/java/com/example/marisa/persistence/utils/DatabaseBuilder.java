@@ -23,6 +23,7 @@ public class DatabaseBuilder {
             stmt.addBatch(createAddressTableSql());
             stmt.addBatch(createCashierTableSql());
             stmt.addBatch(createProductTabel());
+            stmt.addBatch(createChargeBackTableSql());
             stmt.executeBatch();
 
             System.out.println("Database successfully created.");
@@ -75,6 +76,20 @@ public class DatabaseBuilder {
         builder.append("openingBalance numeric(6,2) NOT NULL, \n");
         builder.append("finalBalance numeric(6,2) NULL, \n");
         builder.append("status TEXT NOT NULL");
+        builder.append("); \n");
+
+        System.out.println(builder.toString());
+        return builder.toString();
+    }
+
+    private String createChargeBackTableSql(){
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("CREATE TABLE charge_back (\n");
+        builder.append("id INTEGER PRIMARY KEY, \n");
+        builder.append("date DATE, \n");
+        builder.append("sale_id INTEGER, \n");
+        builder.append("FOREIGN KEY (sale_id) REFERENCES sale (id)");
         builder.append("); \n");
 
         System.out.println(builder.toString());
