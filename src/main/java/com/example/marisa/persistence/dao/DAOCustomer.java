@@ -69,6 +69,7 @@ public class DAOCustomer implements DAO<Customer, Integer> {
     List<Customer> customers = new ArrayList<>();
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
+      stmt.setInt(1, key);
       ResultSet rs = stmt.executeQuery();
       while (rs.next()) {
         Customer customer = getEntityFromResultSet(rs);
@@ -99,12 +100,12 @@ public class DAOCustomer implements DAO<Customer, Integer> {
   }
 
   @Override
-  public List<Customer> selectBy(String field, Object value) {
+  public List<Customer> selectBy(String field, String value) {
     String sql = "SELECT * FROM customer WHERE " + field + " = ?";
     List<Customer> customers = new ArrayList<>();
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
-      stmt.setString(1, field);
+      stmt.setString(1, value);
       ResultSet rs = stmt.executeQuery();
       while (rs.next()) {
         Customer customer = getEntityFromResultSet(rs);

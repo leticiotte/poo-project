@@ -18,7 +18,7 @@ public interface DAO<T, K> {
 
     List<T> selectAll();
 
-    List<T> selectBy(String field, Object value);
+    List<T> selectBy(String field, String value);
 
     T getEntityFromResultSet(ResultSet rs) throws SQLException;
 }

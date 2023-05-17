@@ -63,8 +63,7 @@ public class DAOCashier implements DAO<Cashier, Integer> {
                 rs.getInt("id"),
                 rs.getFloat("openingBalance"),
                 rs.getFloat("finalBalance"),
-                rs.getString("status")
-        );
+                rs.getString("status"));
     }
 
     @Override
@@ -83,7 +82,7 @@ public class DAOCashier implements DAO<Cashier, Integer> {
     }
 
     @Override
-    public List<Cashier> selectBy(String field, Object value) {
+    public List<Cashier> selectBy(String field, String value) {
         throw new UnsupportedOperationException("Unimplemented method 'selectBy'");
     }
 }

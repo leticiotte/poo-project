@@ -16,7 +16,7 @@ public class UCListCustomers {
     return this.daoCustomer.selectAll();
   }
 
-  public List<Customer> listCustomers(String filter, Object value) {
+  public List<Customer> listCustomers(String filter, String value) {
     return this.daoCustomer.selectBy(filter, value);
   }
 }

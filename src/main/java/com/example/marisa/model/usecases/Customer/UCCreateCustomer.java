@@ -19,7 +19,7 @@ public class UCCreateCustomer {
             throw new Error("Cliente já cadastrado no sistema");
         }
 
-        if ((this.daoCustomer.selectBy("cpf", customer)) != null) {
+        if ((this.daoCustomer.selectBy("cpf", customer.getCpf())) != null) {
             throw new Error("CPF já cadastrado no sistema");
         }
 

@@ -16,7 +16,7 @@ public class UCListProducts {
     return this.daoProduct.selectAll();
   }
 
-  public List<Product> listProducts(String filter, Object value) {
+  public List<Product> listProducts(String filter, String value) {
     return this.daoProduct.selectBy(filter, value);
   }
 }

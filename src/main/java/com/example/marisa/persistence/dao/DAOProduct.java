@@ -69,6 +69,7 @@ public class DAOProduct implements DAO<Product, Integer> {
     List<Product> products = new ArrayList<>();
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
+      stmt.setInt(1, key);
       ResultSet rs = stmt.executeQuery();
       while (rs.next()) {
         Product product = getEntityFromResultSet(rs);
@@ -99,12 +100,12 @@ public class DAOProduct implements DAO<Product, Integer> {
   }
 
   @Override
-  public List<Product> selectBy(String field, Object value) {
+  public List<Product> selectBy(String field, String value) {
     String sql = "SELECT * FROM product WHERE " + field + " = ?";
     List<Product> products = new ArrayList<>();
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
-      stmt.setString(1, field);
+      stmt.setString(1, value);
       ResultSet rs = stmt.executeQuery();
       while (rs.next()) {
         Product product = getEntityFromResultSet(rs);
