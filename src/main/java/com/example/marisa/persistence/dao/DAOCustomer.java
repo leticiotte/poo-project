@@ -29,12 +29,12 @@ public class DAOCustomer implements DAO<Customer, Integer> {
 
   @Override
   public void update(Customer entity) {
-    String sql = "UPDATE Product SET name = ?, sellPrice = ?, buyPrice = ?, quantity = ?, facet = ?, " +
-        "category = ?, minimumStock = ?, size = ? WHERE id = ?";
+    String sql = "UPDATE Customer SET name = ?, phone = ?, email = ?, status = ?, number = ?, street = ?, " +
+        "complement = ?, city = ?, country = ?, zipcode = ? WHERE id = ? AND active = true";
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
-      setEntityToPreparedStatement(entity, stmt);
-      stmt.setInt(9, entity.getId());
+      setEntityToPreparedStatementUpdate(entity, stmt);
+      stmt.setInt(11, entity.getId());
       stmt.executeQuery();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -53,7 +53,7 @@ public class DAOCustomer implements DAO<Customer, Integer> {
 
   @Override
   public void delete(Integer key) {
-    String sql = "UPDATE customer SET active = FALSE WHERE id = ?";
+    String sql = "UPDATE customer SET active = false WHERE id = ?";
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
       stmt.setInt(1, key);
@@ -65,7 +65,7 @@ public class DAOCustomer implements DAO<Customer, Integer> {
 
   @Override
   public Optional<Customer> select(Integer key) {
-    String sql = "SELECT * FROM customer WHERE id = ?";
+    String sql = "SELECT * FROM customer WHERE id = ? AND active = true";
     List<Customer> customers = new ArrayList<>();
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
@@ -84,7 +84,7 @@ public class DAOCustomer implements DAO<Customer, Integer> {
 
   @Override
   public List<Customer> selectAll() {
-    String sql = "SELECT * FROM customer";
+    String sql = "SELECT * FROM customer WHERE active = true";
     List<Customer> customers = new ArrayList<>();
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
@@ -101,7 +101,7 @@ public class DAOCustomer implements DAO<Customer, Integer> {
 
   @Override
   public List<Customer> selectBy(String field, String value) {
-    String sql = "SELECT * FROM customer WHERE " + field + " = ?";
+    String sql = "SELECT * FROM customer WHERE " + field + " = ? AND active = true";
     List<Customer> customers = new ArrayList<>();
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
@@ -136,17 +136,31 @@ public class DAOCustomer implements DAO<Customer, Integer> {
 
   protected void setEntityToPreparedStatement(Customer entity, PreparedStatement stmt)
       throws SQLException {
-    stmt.setInt(1, entity.getId());
-    stmt.setString(2, entity.getName());
-    stmt.setString(3, entity.getCpf());
-    stmt.setString(4, entity.getPhone());
-    stmt.setString(5, entity.getEmail());
-    stmt.setString(6, entity.getStatus());
-    stmt.setInt(7, entity.getNumber());
-    stmt.setString(8, entity.getStreet());
+    stmt.setString(1, entity.getName());
+    stmt.setString(2, entity.getCpf());
+    stmt.setString(3, entity.getPhone());
+    stmt.setString(4, entity.getEmail());
+    stmt.setString(5, entity.getStatus());
+    stmt.setInt(6, entity.getNumber());
+    stmt.setString(7, entity.getStreet());
     stmt.setString(8, entity.getComplement());
-    stmt.setString(8, entity.getCity());
-    stmt.setString(8, entity.getCountry());
-    stmt.setString(8, entity.getZipcode());
+    stmt.setString(9, entity.getCity());
+    stmt.setString(10, entity.getCountry());
+    stmt.setString(11, entity.getZipcode());
   }
+
+  protected void setEntityToPreparedStatementUpdate(Customer entity, PreparedStatement stmt)
+      throws SQLException {
+    stmt.setString(1, entity.getName());
+    stmt.setString(2, entity.getPhone());
+    stmt.setString(3, entity.getEmail());
+    stmt.setString(4, entity.getStatus());
+    stmt.setInt(5, entity.getNumber());
+    stmt.setString(6, entity.getStreet());
+    stmt.setString(7, entity.getComplement());
+    stmt.setString(8, entity.getCity());
+    stmt.setString(9, entity.getCountry());
+    stmt.setString(10, entity.getZipcode());
+  }
+
 }
