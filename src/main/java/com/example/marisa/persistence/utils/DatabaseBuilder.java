@@ -20,7 +20,6 @@ public class DatabaseBuilder {
 
     private void buildTables() {
         try (Statement stmt = DatabaseConnectionFactory.createStatement()) {
-            stmt.addBatch(createAddressTableSql());
             stmt.addBatch(createCashierTableSql());
             stmt.addBatch(createProductTabel());
             stmt.addBatch(createCustomerTableSql());
@@ -30,22 +29,6 @@ public class DatabaseBuilder {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    private String createAddressTableSql() {
-        StringBuilder builder = new StringBuilder();
-
-        builder.append("CREATE TABLE Address (\n");
-        builder.append("id INTEGER PRIMARY KEY, \n");
-        builder.append("street TEXT NOT NULL, \n");
-        builder.append("number INTEGER, \n");
-        builder.append("city TEXT NOT NULL, \n");
-        builder.append("state TEXT NOT NULL, \n");
-        builder.append("zipCode TEXT, ");
-        builder.append("); \n");
-
-        System.out.println(builder.toString());
-        return builder.toString();
     }
 
     private String createProductTabel() {
@@ -62,6 +45,7 @@ public class DatabaseBuilder {
         builder.append("category TEXT NOT NULL, \n");
         builder.append("minimumStock INTEGER, \n");
         builder.append("creationDate DATE, \n");
+        builder.append("active BOOLEAN NOT NULL DEFAULT true");
         builder.append("); \n");
 
         System.out.println(builder.toString());
@@ -84,6 +68,7 @@ public class DatabaseBuilder {
         builder.append("city VARCHAR(255) NOT NULL, \n");
         builder.append("country VARCHAR(255) NOT NULL, \n");
         builder.append("zipcode VARCHAR(20) NOT NULL");
+        builder.append("active BOOLEAN NOT NULL DEFAULT true");
         builder.append("); \n");
 
         System.out.println(builder.toString());
