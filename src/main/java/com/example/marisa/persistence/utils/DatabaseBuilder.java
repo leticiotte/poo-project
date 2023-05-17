@@ -22,6 +22,8 @@ public class DatabaseBuilder {
         try (Statement stmt = DatabaseConnectionFactory.createStatement()) {
             stmt.addBatch(createCashierTableSql());
             stmt.addBatch(createProductTabel());
+            stmt.addBatch(createChargeBackTableSql());
+            stmt.addBatch(createSaleChargeBackTableSql());
             stmt.addBatch(createCustomerTableSql());
             stmt.executeBatch();
 
@@ -83,6 +85,35 @@ public class DatabaseBuilder {
         builder.append("openingBalance numeric(6,2) NOT NULL, \n");
         builder.append("finalBalance numeric(6,2) NULL, \n");
         builder.append("status TEXT NOT NULL");
+        builder.append("); \n");
+
+        System.out.println(builder.toString());
+        return builder.toString();
+    }
+
+    private String createChargeBackTableSql(){
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("CREATE TABLE charge_back (\n");
+        builder.append("id INTEGER PRIMARY KEY, \n");
+        builder.append("date DATE, \n");
+        builder.append("sale_id INTEGER, \n");
+        builder.append("FOREIGN KEY (sale_id) REFERENCES sale (id)");
+        builder.append("); \n");
+
+        System.out.println(builder.toString());
+        return builder.toString();
+    }
+
+    private String createSaleChargeBackTableSql(){
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("CREATE TABLE sale_charge_back (\n");
+        builder.append("sale_id INTEGER, \n");
+        builder.append("charge_back_id INTEGER, \n");
+        builder.append("PRIMARY KEY (charge_back_id, sale_id), \n");
+        builder.append("FOREIGN KEY (sale_id) REFERENCES sale (id), \n");
+        builder.append("FOREIGN KEY (charge_back_id) REFERENCES charge_back (id), \n");
         builder.append("); \n");
 
         System.out.println(builder.toString());
