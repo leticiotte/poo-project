@@ -74,16 +74,16 @@ public class DAOCashier implements DAO<Cashier, Integer> {
 
     @Override
     public void delete(Integer key) {
-        throw new UnsupportedOperationException("Unimplemented method 'saveOrUpdate'");
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
 
     @Override
     public List<Cashier> selectAll() {
-        throw new UnsupportedOperationException("Unimplemented method 'saveOrUpdate'");
+        throw new UnsupportedOperationException("Unimplemented method 'selectAll'");
     }
 
     @Override
     public List<Cashier> selectBy(String field, Object value) {
-        throw new UnsupportedOperationException("Unimplemented method 'saveOrUpdate'");
+        throw new UnsupportedOperationException("Unimplemented method 'selectBy'");
     }
 }
