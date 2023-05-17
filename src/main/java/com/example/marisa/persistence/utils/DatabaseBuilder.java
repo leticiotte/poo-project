@@ -24,6 +24,7 @@ public class DatabaseBuilder {
             stmt.addBatch(createCashierTableSql());
             stmt.addBatch(createProductTabel());
             stmt.addBatch(createChargeBackTableSql());
+            stmt.addBatch(createSaleChargeBackTableSql());
             stmt.executeBatch();
 
             System.out.println("Database successfully created.");
@@ -90,6 +91,21 @@ public class DatabaseBuilder {
         builder.append("date DATE, \n");
         builder.append("sale_id INTEGER, \n");
         builder.append("FOREIGN KEY (sale_id) REFERENCES sale (id)");
+        builder.append("); \n");
+
+        System.out.println(builder.toString());
+        return builder.toString();
+    }
+
+    private String createSaleChargeBackTableSql(){
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("CREATE TABLE sale_charge_back (\n");
+        builder.append("sale_id INTEGER, \n");
+        builder.append("charge_back_id INTEGER, \n");
+        builder.append("PRIMARY KEY (charge_back_id, sale_id), \n");
+        builder.append("FOREIGN KEY (sale_id) REFERENCES sale (id), \n");
+        builder.append("FOREIGN KEY (charge_back_id) REFERENCES charge_back (id), \n");
         builder.append("); \n");
 
         System.out.println(builder.toString());
