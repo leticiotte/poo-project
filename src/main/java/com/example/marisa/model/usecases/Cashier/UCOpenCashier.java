@@ -1,4 +1,4 @@
-package com.example.marisa.model.usecases.cashier;
+package com.example.marisa.model.usecases.Cashier;
 
 import com.example.marisa.model.entities.Cashier;
 import com.example.marisa.persistence.dao.DAOCashier;

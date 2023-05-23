@@ -1,5 +1,6 @@
 package com.example.marisa.persistence.dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.marisa.model.entities.Cashier;
 import com.example.marisa.model.entities.Product;
+import com.example.marisa.model.entities.Sale;
 import com.example.marisa.persistence.utils.DAO;
 import com.example.marisa.persistence.utils.DatabaseConnectionFactory;
 
@@ -49,10 +52,22 @@ public class DAOSale implements DAO<Sale, Integer> {
     throw new UnsupportedOperationException("Unimplemented method 'selectAll'");
   }
 
-  @Override
-  public List<Sale> selectBy(String field, Object value) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'selectBy'");
+  public List<Sale> selectCashierSales(int cashierId, Date date) {
+    String sql = "SELECT * FROM sale WHERE cashier_id = ? AND date >= ?";
+    List<Sale> sales = new ArrayList<>();
+
+    try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
+      stmt.setInt(1, cashierId);
+      stmt.setDate(2, date);
+      ResultSet rs = stmt.executeQuery();
+      while (rs.next()) {
+        Sale sale = getEntityFromResultSet(rs);
+        sales.add(sale);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return sales;
   }
 
   @Override
@@ -61,6 +76,10 @@ public class DAOSale implements DAO<Sale, Integer> {
     throw new UnsupportedOperationException("Unimplemented method 'getEntityFromResultSet'");
   }
 
+  @Override
+  public List<Sale> selectBy(String field, String value) {
+    throw new UnsupportedOperationException("Unimplemented method 'selectBy'");
+  }
   public List<Sale> selectSalesByProduct(Product product) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'selectAll'");
