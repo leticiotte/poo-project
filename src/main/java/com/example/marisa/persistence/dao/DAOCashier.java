@@ -33,7 +33,7 @@ public class DAOCashier implements DAO<Cashier, Integer> {
 
         try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
             stmt.setFloat(1, cashier.getOpeningBalance());
-            stmt.setString(2, cashier.getStatus());
+            stmt.setString(2, cashier.getStatus().name());
 
             stmt.executeUpdate();
 
@@ -48,7 +48,7 @@ public class DAOCashier implements DAO<Cashier, Integer> {
 
         try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
             stmt.setFloat(1, cashier.getFinalBalance());
-            stmt.setString(2, cashier.getStatus());
+            stmt.setString(2, cashier.getStatus().name());
             stmt.setInt(3, cashier.getId());
 
             stmt.executeUpdate();

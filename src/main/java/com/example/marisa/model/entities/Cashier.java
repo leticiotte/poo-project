@@ -1,16 +1,18 @@
 package com.example.marisa.model.entities;
 
+import com.example.marisa.model.enumeration.CashierStatusEnum;
+
 public class Cashier {
     private int id;
     private float openingBalance;
     private float finalBalance;
-    private String status;
+    private CashierStatusEnum status;
 
     public Cashier(int id, float openingBalance, float finalBalance, String status) {
-        this.setId(id);
-        this.setOpeningBalance(openingBalance);
-        this.setFinalBalance(finalBalance);
-        this.setStatus(status);
+        this.id = id;
+        this.openingBalance = openingBalance;
+        this.finalBalance = finalBalance;
+        this.status = CashierStatusEnum.valueOf(status);
     }
 
     public void openCashier() {
@@ -46,11 +48,11 @@ public class Cashier {
         this.finalBalance = finalBalance;
     }
 
-    public String getStatus() {
+    public CashierStatusEnum getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(CashierStatusEnum status) {
         this.status = status;
     }
 }
