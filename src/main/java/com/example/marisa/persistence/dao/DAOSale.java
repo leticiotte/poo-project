@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.marisa.model.entities.Product;
+import com.example.marisa.model.entities.Sale;
 import com.example.marisa.persistence.utils.DAO;
 import com.example.marisa.persistence.utils.DatabaseConnectionFactory;
 

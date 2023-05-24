@@ -3,8 +3,9 @@ package com.example.marisa.model.entities;
 public class SaleItem {
     private Product product;
     private Integer quantity;
-    private float discount;
-    private float price;
+    private double discount = 1;
+    private double price;
+    private double priceWithDiscount;
 
     public SaleItem() {
     }
@@ -29,7 +30,7 @@ public class SaleItem {
         return discount;
     }
 
-    public void setDiscount(float discount) {
+    public void setDiscount(double discount) {
         this.discount = discount;
     }
 
@@ -37,21 +38,27 @@ public class SaleItem {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
+    public double getPriceWithDiscount() {
+        return priceWithDiscount;
+    }
+
+    public void setPriceWithDiscount(double priceWithDiscount) {
+        this.priceWithDiscount = priceWithDiscount;
+    }
+
     public boolean isValidDiscount(){
-        float priceWithDiscount = this.product.getSellPrice() * this.discount;
-        if (priceWithDiscount < this.product.getBuyPrice()){
-            return false;
-        }
-        return true;
+        double priceWithDiscount = this.product.getSellPrice() * this.discount;
+        return !(priceWithDiscount < this.product.getBuyPrice());
     }
 
     public void applyDiscount(){
         if(this.isValidDiscount()){
-            this.price = (this.quantity * this.product.getSellPrice()) * this.discount;
+            this.price = this.quantity * this.product.getSellPrice();
+            this.priceWithDiscount = (this.quantity * this.product.getSellPrice()) * this.discount;
         }
     }
 

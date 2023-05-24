@@ -8,15 +8,15 @@ public class Sale {
     private Integer id;
     private String nf;
     private List<SaleItem> products;
-    private Date date;
-    private float totalDiscount;
-    private float totalValue;
+    private Date date = new Date();;
+    private double totalDiscount;
+    private double totalValue;
+    private double totalPayablePrice;
     private PaymentMethodTypeEnum paymentType;
     private Integer clientId;
     private Integer idCashier;
 
     public Sale() {
-        this.date = new Date();
     }
 
     public Integer getId() {
@@ -51,19 +51,19 @@ public class Sale {
         this.date = date;
     }
 
-    public float getTotalDiscount() {
+    public double getTotalDiscount() {
         return totalDiscount;
     }
 
-    public void setTotalDiscount(float totalDiscount) {
+    public void setTotalDiscount(double totalDiscount) {
         this.totalDiscount = totalDiscount;
     }
 
-    public float getTotalValue() {
+    public double getTotalValue() {
         return totalValue;
     }
 
-    public void setTotalValue(float totalValue) {
+    public void setTotalValue(double totalValue) {
         this.totalValue = totalValue;
     }
 
@@ -83,15 +83,19 @@ public class Sale {
         this.clientId = clientId;
     }
 
-    public void addProduct(SaleItem product){
-        if (this.products != null) {
-            this.products.add(product);
+    public void addProduct(SaleItem product) {
+        if (product.isValidDiscount()) {
+            if (this.products != null) {
+                this.products.add(product);
+            } else {
+                this.products = Collections.singletonList(product);
+            }
         }else{
-            this.products = Collections.singletonList(product);
+            throw new Error("Produto não possui desconto válido.");
         }
     }
 
-    public boolean isProductsStockValid(){
+    public boolean isProductsStockValid() {
         for (SaleItem item : this.products) {
             if (item.getQuantity() > item.getProduct().getQuantity()) {
                 return false;
@@ -100,11 +104,44 @@ public class Sale {
         return true;
     }
 
-    public void closeSale(PaymentMethodTypeEnum paymentType){
+    public void closeSale(PaymentMethodTypeEnum paymentType) {
         for (SaleItem item : this.products) {
-            if (item.isValidDiscount()) item.applyDiscount();
+            if (item.isValidDiscount()) {
+                item.applyDiscount();
+                this.totalDiscount += item.getPrice() - item.getPriceWithDiscount();
+                this.totalValue += item.getPrice();
+            }
             else throw new Error("Desconto inválido para o item " + item.getProduct().getName());
         }
+        this.totalPayablePrice = this.totalValue - this.totalDiscount;
         this.paymentType = paymentType;
+        this.nf = generateNF();
+    }
+
+    private String generateNF(){
+        StringBuilder nf = new StringBuilder("Produtos: \n");
+        for (SaleItem item : this.products){
+            nf.append(item.getProduct().getName())
+              .append(": R$")
+              .append(String.format("%.2f", item.getProduct().getSellPrice()))
+              .append(" x ")
+              .append(item.getQuantity());
+
+              if(item.getDiscount() != 1) {
+                  nf.append(" (desconto de ").append(item.getQuantity() * 100).append("%)\n");
+              }else{
+                  nf.append("\n");
+              }
+        }
+        nf.append("Valor total: R$");
+        nf.append(String.format("%.2f", this.totalPayablePrice));
+        nf.append("\n");
+        nf.append("Desconto: R$");
+        nf.append(String.format("%.2f", this.totalDiscount));
+        nf.append("\n");
+        nf.append("---\nValor a ser pago: R$");
+        nf.append(String.format("%.2f", this.totalDiscount));
+
+        return nf.toString();
     }
 }
