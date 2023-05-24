@@ -1,4 +1,4 @@
-package com.example.marisa.model.usecases.Cashier;
+package com.example.marisa.model.usecases.cashier;
 
 import com.example.marisa.model.entities.Cashier;
 import com.example.marisa.model.enumeration.CashierStatusEnum;
@@ -19,16 +19,17 @@ public class UCOpenCashier {
     public void openCashier(Cashier cashier) {
         Optional<Cashier> dbCashier = this.daoCashier.select(cashier.getId());
 
-        if (dbCashier.isEmpty()) {
-            ArrayList<String> params = new ArrayList<>(Arrays.asList("openingBalance", "status"));
-            if (!Validator.validateFields(cashier, params)) {
-                throw new Error("O Caixa não está com todos os campos obrigatórios preenchidos.");
-            }
-            this.daoCashier.save(cashier);
+        ArrayList<String> params = new ArrayList<>(Arrays.asList("id", "openingBalance", "status"));
+        if (!Validator.validateFields(cashier, params)) {
+            throw new Error("O Caixa não está com todos os campos obrigatórios preenchidos.");
         }
 
         if(cashier.getStatus() == CashierStatusEnum.OPENED){
             throw new Error("O Caixa já está aberto.");
+        }
+
+        if (dbCashier.isEmpty()) {
+            this.daoCashier.save(cashier);
         }
 
         this.daoCashier.open(cashier);
