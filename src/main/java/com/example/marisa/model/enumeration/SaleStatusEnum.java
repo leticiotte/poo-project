@@ -1,5 +1,5 @@
 package com.example.marisa.model.enumeration;
 
-public enum SaleStatus {
+public enum SaleStatusEnum {
     CANCELED;
 }
