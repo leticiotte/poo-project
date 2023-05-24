@@ -1,6 +1,7 @@
 package com.example.marisa.persistence.dao;
 
 import com.example.marisa.model.entities.Cashier;
+import com.example.marisa.model.entities.Sale;
 import com.example.marisa.persistence.utils.DAO;
 import com.example.marisa.persistence.utils.DatabaseConnectionFactory;
 
@@ -42,8 +43,22 @@ public class DAOCashier implements DAO<Cashier, Integer> {
         }
     }
 
-    @Override
-    public void update(Cashier cashier) {
+    public void open(Cashier cashier) {
+        String sql = "UPDATE cashier SET openingBalance = ?, status = ? WHERE id = ?";
+
+        try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
+            stmt.setFloat(1, cashier.getOpeningBalance());
+            stmt.setString(2, cashier.getStatus().name());
+            stmt.setInt(3, cashier.getId());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void close(Cashier cashier) {
         String sql = "UPDATE cashier SET finalBalance = ?, status = ? WHERE id = ?";
 
         try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
@@ -69,6 +84,11 @@ public class DAOCashier implements DAO<Cashier, Integer> {
     @Override
     public void saveOrUpdate(Cashier entity) {
         throw new UnsupportedOperationException("Unimplemented method 'saveOrUpdate'");
+    }
+
+    @Override
+    public void update(Cashier entity) {
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
     @Override
