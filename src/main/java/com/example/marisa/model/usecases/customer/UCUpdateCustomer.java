@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 import com.example.marisa.model.entities.Customer;
 import com.example.marisa.persistence.dao.DAOCustomer;
-import com.example.marisa.persistence.utils.Validator;
+import com.example.marisa.model.utils.Validator;
 
 public class UCUpdateCustomer {
   private DAOCustomer daoCustomer;
