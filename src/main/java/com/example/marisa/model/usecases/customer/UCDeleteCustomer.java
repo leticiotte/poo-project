@@ -10,9 +10,9 @@ public class UCDeleteCustomer {
     this.daoCustomer = daoCustomer;
   }
 
-  public void deleteCustomer(Customer customer) {
+  public void deleteCustomer(Customer customer) throws Exception {
     if (customer.getId() == null) {
-      throw new Error("Cliente não está cadastrado no sistema.");
+      throw new Exception("Cliente não está cadastrado no sistema.");
     }
 
     this.daoCustomer.delete(customer.getId());

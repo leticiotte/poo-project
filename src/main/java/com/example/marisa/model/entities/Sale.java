@@ -83,15 +83,15 @@ public class Sale {
         this.clientId = clientId;
     }
 
-    public void addProduct(SaleItem product) {
+    public void addProduct(SaleItem product) throws Exception {
         if (product.isValidDiscount()) {
             if (this.products != null) {
                 this.products.add(product);
             } else {
                 this.products = Collections.singletonList(product);
             }
-        }else{
-            throw new Error("Produto não possui desconto válido.");
+        } else {
+            throw new Exception("Produto não possui desconto válido.");
         }
     }
 
@@ -104,34 +104,34 @@ public class Sale {
         return true;
     }
 
-    public void closeSale(PaymentMethodTypeEnum paymentType) {
+    public void closeSale(PaymentMethodTypeEnum paymentType) throws Exception {
         for (SaleItem item : this.products) {
             if (item.isValidDiscount()) {
                 item.applyDiscount();
                 this.totalDiscount += item.getPrice() - item.getPriceWithDiscount();
                 this.totalValue += item.getPrice();
-            }
-            else throw new Error("Desconto inválido para o item " + item.getProduct().getName());
+            } else
+                throw new Exception("Desconto inválido para o item " + item.getProduct().getName());
         }
         this.totalPayablePrice = this.totalValue - this.totalDiscount;
         this.paymentType = paymentType;
         this.nf = generateNF();
     }
 
-    private String generateNF(){
+    private String generateNF() {
         StringBuilder nf = new StringBuilder("Produtos: \n");
-        for (SaleItem item : this.products){
+        for (SaleItem item : this.products) {
             nf.append(item.getProduct().getName())
-              .append(": R$")
-              .append(String.format("%.2f", item.getProduct().getSellPrice()))
-              .append(" x ")
-              .append(item.getQuantity());
+                    .append(": R$")
+                    .append(String.format("%.2f", item.getProduct().getSellPrice()))
+                    .append(" x ")
+                    .append(item.getQuantity());
 
-              if(item.getDiscount() != 1) {
-                  nf.append(" (desconto de ").append(item.getQuantity() * 100).append("%)\n");
-              }else{
-                  nf.append("\n");
-              }
+            if (item.getDiscount() != 1) {
+                nf.append(" (desconto de ").append(item.getQuantity() * 100).append("%)\n");
+            } else {
+                nf.append("\n");
+            }
         }
         nf.append("Valor total: R$");
         nf.append(String.format("%.2f", this.totalPayablePrice));

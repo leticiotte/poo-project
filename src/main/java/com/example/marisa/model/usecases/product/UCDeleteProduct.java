@@ -13,13 +13,13 @@ public class UCDeleteProduct {
     this.daoSale = daoSale;
   }
 
-  public void deleteProduct(Product product) {
+  public void deleteProduct(Product product) throws Exception {
     if (product.getId() == null) {
-      throw new Error("Produto não está cadastrado no sistema.");
+      throw new Exception("Produto não está cadastrado no sistema.");
     }
 
     if (!daoSale.selectSalesByProduct(product).isEmpty()) {
-      throw new Error("Não é possível deletar o produto pois ele já está registrado em uma venda");
+      throw new Exception("Não é possível deletar o produto pois ele já está registrado em uma venda");
     }
 
     this.daoProduct.delete(product.getId());

@@ -10,13 +10,13 @@ public class UCCreateProduct {
     this.daoProduct = daoProduct;
   }
 
-  public void createProduct(Product product) {
+  public void createProduct(Product product) throws Exception {
     if (this.daoProduct.select(product.getId()).isPresent()) {
-      throw new Error("Produto já cadastrado no sistema");
+      throw new Exception("Produto já cadastrado no sistema");
     }
 
     if (!product.validateFields()) {
-      throw new Error("Produto não está com todos os campos obrigatórios preenchidos.");
+      throw new Exception("Produto não está com todos os campos obrigatórios preenchidos.");
     }
 
     this.daoProduct.save(product);

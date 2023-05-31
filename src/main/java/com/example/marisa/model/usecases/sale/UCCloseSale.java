@@ -7,11 +7,13 @@ import com.example.marisa.persistence.dao.DAOSale;
 public class UCCloseSale {
     private DAOSale daoSale;
 
-    public UCCloseSale(DAOSale daoSale){ this.daoSale = daoSale; }
+    public UCCloseSale(DAOSale daoSale) {
+        this.daoSale = daoSale;
+    }
 
-    public void closeSale(Sale sale, PaymentMethodTypeEnum paymentType){
-        if(!sale.isProductsStockValid()){
-            throw new Error("Produto(s) com estoque indisponível.");
+    public void closeSale(Sale sale, PaymentMethodTypeEnum paymentType) throws Exception {
+        if (!sale.isProductsStockValid()) {
+            throw new Exception("Produto(s) com estoque indisponível.");
         }
 
         sale.closeSale(paymentType);

@@ -10,9 +10,9 @@ public class UCUpdateProduct {
     this.daoProduct = daoProduct;
   }
 
-  public void updateProduct(Product product) {
+  public void updateProduct(Product product) throws Exception {
     if (!product.validateFields()) {
-      throw new Error("Produto não está com todos os campos obrigatórios preenchidos.");
+      throw new Exception("Produto não está com todos os campos obrigatórios preenchidos.");
     }
 
     this.daoProduct.saveOrUpdate(product);

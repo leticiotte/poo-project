@@ -16,20 +16,20 @@ public class UCCloseCashier {
         this.daoCashier = daoCashier;
     }
 
-    public void closeCashier(Cashier cashier) {
+    public void closeCashier(Cashier cashier) throws Exception {
         Optional<Cashier> dbCashier = this.daoCashier.select(cashier.getId());
 
         if (dbCashier.isEmpty()) {
-            throw new Error("O Caixa não existe.");
+            throw new Exception("O Caixa não existe.");
         }
 
-        if(cashier.getStatus() == CashierStatusEnum.CLOSED){
-            throw new Error("O Caixa já está fechado.");
+        if (cashier.getStatus() == CashierStatusEnum.CLOSED) {
+            throw new Exception("O Caixa já está fechado.");
         }
 
         ArrayList<String> params = new ArrayList<>(Arrays.asList("id", "finalBalance", "status"));
         if (!Validator.validateFields(cashier, params)) {
-            throw new Error("O Caixa não está com todos os campos obrigatórios preenchidos.");
+            throw new Exception("O Caixa não está com todos os campos obrigatórios preenchidos.");
         }
 
         this.daoCashier.close(cashier);

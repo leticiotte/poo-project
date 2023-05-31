@@ -14,12 +14,12 @@ public class UCUpdateCustomer {
     this.daoCustomer = daoCustomer;
   }
 
-  public void updateCustomer(Customer customer) {
+  public void updateCustomer(Customer customer) throws Exception {
     ArrayList<String> params = new ArrayList<>(Arrays.asList("id", "name", "cpf", "phone", "email", "status",
         "number", "street", "complement", "city", "country", "zipcode"));
 
     if (!Validator.validateFields(customer, params)) {
-      throw new Error("Cliente não está com todos os campos obrigatórios preenchidos.");
+      throw new Exception("Cliente não está com todos os campos obrigatórios preenchidos.");
     }
 
     this.daoCustomer.saveOrUpdate(customer);
