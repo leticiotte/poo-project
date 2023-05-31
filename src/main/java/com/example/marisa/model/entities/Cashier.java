@@ -15,15 +15,6 @@ public class Cashier {
         this.status = CashierStatusEnum.valueOf(status);
     }
 
-    public void openCashier() {
-    }
-
-    public void closeCashier() {
-    }
-
-    public void calculateDaySales() {
-    }
-
     public int getId() {
         return id;
     }
