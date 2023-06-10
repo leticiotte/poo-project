@@ -1,22 +1,20 @@
 package com.example.marisa.model.entities;
 
 public class Customer {
-    Integer id;
-    String name;
-    String cpf;
-    String phone;
-    String email;
-    String status;
-    Integer number;
-    String street;
-    String complement;
-    String city;
-    String country;
-    String zipcode;
+    private String name;
+    private String cpf;
+    private String phone;
+    private String email;
+    private String status;
+    private Integer number;
+    private String street;
+    private String complement;
+    private String city;
+    private String country;
+    private String zipcode;
 
-    public Customer(Integer id, String name, String cpf, String phone, String email, String status, Integer number,
+    public Customer(String name, String cpf, String phone, String email, String status, Integer number,
             String street, String complement, String city, String country, String zipcode) {
-        this.id = id;
         this.name = name;
         this.cpf = cpf;
         this.phone = phone;
@@ -28,10 +26,6 @@ public class Customer {
         this.city = city;
         this.country = country;
         this.zipcode = zipcode;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public String getName() {
