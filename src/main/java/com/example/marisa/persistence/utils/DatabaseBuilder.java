@@ -21,7 +21,7 @@ public class DatabaseBuilder {
     private void buildTables() {
         try (Statement stmt = DatabaseConnectionFactory.createStatement()) {
             stmt.addBatch(createCashierTableSql());
-            stmt.addBatch(createProductTabel());
+            stmt.addBatch(createProductTableSql());
             stmt.addBatch(createChargeBackTableSql());
             stmt.addBatch(createSaleChargeBackTableSql());
             stmt.addBatch(createCustomerTableSql());
@@ -33,24 +33,24 @@ public class DatabaseBuilder {
         }
     }
 
-    private String createProductTabel() {
+    private String createProductTableSql() {
         StringBuilder builder = new StringBuilder();
 
         builder.append("CREATE TABLE Product (\n");
-        builder.append("id INTEGER PRIMARY KEY, \n");
+        builder.append("id INTEGER PRIMARY KEY AUTOINCREMENT, \n");
         builder.append("name TEXT NOT NULL, \n");
-        builder.append("sellPrice NUMBER NOT NULL, \n");
-        builder.append("buyPrice NUMBER NOT NULL, \n");
+        builder.append("sellPrice REAL NOT NULL, \n");
+        builder.append("buyPrice REAL NOT NULL, \n");
         builder.append("quantity INTEGER, \n");
         builder.append("facet TEXT, \n");
         builder.append("size TEXT NOT NULL, \n");
         builder.append("category TEXT NOT NULL, \n");
         builder.append("minimumStock INTEGER, \n");
-        builder.append("creationDate DATE, \n");
-        builder.append("active BOOLEAN NOT NULL DEFAULT true");
+        builder.append("creationDate TEXT, \n");
+        builder.append("active TEXT DEFAULT 'true' NOT NULL");
         builder.append("); \n");
 
-        System.out.println(builder.toString());
+        System.out.println(builder);
         return builder.toString();
     }
 
@@ -58,22 +58,22 @@ public class DatabaseBuilder {
         StringBuilder builder = new StringBuilder();
 
         builder.append("CREATE TABLE customer (\n");
-        builder.append("id INTEGER PRIMARY KEY, \n");
-        builder.append("name VARCHAR(255) NOT NULL, \n");
-        builder.append("cpf VARCHAR(11) NOT NULL, \n");
-        builder.append("phone VARCHAR(20) NOT NULL, \n");
-        builder.append("email VARCHAR(255) NOT NULL, \n");
-        builder.append("status VARCHAR(20) NOT NULL, \n");
+        builder.append("id INTEGER PRIMARY KEY AUTOINCREMENT, \n");
+        builder.append("name TEXT NOT NULL, \n");
+        builder.append("cpf TEXT NOT NULL, \n");
+        builder.append("phone TEXT NOT NULL, \n");
+        builder.append("email TEXT NOT NULL, \n");
+        builder.append("status TEXT NOT NULL, \n");
         builder.append("number INTEGER NOT NULL, \n");
-        builder.append("street VARCHAR(255) NOT NULL, \n");
-        builder.append("complement VARCHAR(255) NULL, \n");
-        builder.append("city VARCHAR(255) NOT NULL, \n");
-        builder.append("country VARCHAR(255) NOT NULL, \n");
-        builder.append("zipcode VARCHAR(20) NOT NULL");
-        builder.append("active BOOLEAN NOT NULL DEFAULT true");
+        builder.append("street TEXT NOT NULL, \n");
+        builder.append("complement TEXT NULL, \n");
+        builder.append("city TEXT NOT NULL, \n");
+        builder.append("country TEXT NOT NULL, \n");
+        builder.append("zipcode TEXT NOT NULL");
+        builder.append("active TEXT DEFAULT 'true' NOT NULL");
         builder.append("); \n");
 
-        System.out.println(builder.toString());
+        System.out.println(builder);
         return builder.toString();
     }
 
@@ -81,13 +81,13 @@ public class DatabaseBuilder {
         StringBuilder builder = new StringBuilder();
 
         builder.append("CREATE TABLE cashier (\n");
-        builder.append("id INTEGER PRIMARY KEY, \n");
-        builder.append("openingBalance numeric(6,2) NOT NULL, \n");
-        builder.append("finalBalance numeric(6,2) NULL, \n");
+        builder.append("id INTEGER PRIMARY KEY AUTOINCREMENT, \n");
+        builder.append("openingBalance REAL NOT NULL, \n");
+        builder.append("finalBalance REAL NOT NULL, \n");
         builder.append("status TEXT NOT NULL");
         builder.append("); \n");
 
-        System.out.println(builder.toString());
+        System.out.println(builder);
         return builder.toString();
     }
 
@@ -95,13 +95,13 @@ public class DatabaseBuilder {
         StringBuilder builder = new StringBuilder();
 
         builder.append("CREATE TABLE charge_back (\n");
-        builder.append("id INTEGER PRIMARY KEY, \n");
-        builder.append("date DATE, \n");
+        builder.append("id INTEGER PRIMARY KEY AUTOINCREMENT, \n");
+        builder.append("date TEXT, \n");
         builder.append("sale_id INTEGER, \n");
         builder.append("FOREIGN KEY (sale_id) REFERENCES sale (id)");
         builder.append("); \n");
 
-        System.out.println(builder.toString());
+        System.out.println(builder);
         return builder.toString();
     }
 
@@ -112,11 +112,11 @@ public class DatabaseBuilder {
         builder.append("sale_id INTEGER, \n");
         builder.append("charge_back_id INTEGER, \n");
         builder.append("PRIMARY KEY (charge_back_id, sale_id), \n");
-        builder.append("FOREIGN KEY (sale_id) REFERENCES sale (id), \n");
-        builder.append("FOREIGN KEY (charge_back_id) REFERENCES charge_back (id), \n");
+        builder.append("FOREIGN KEY(sale_id) REFERENCES sale(id), \n");
+        builder.append("FOREIGN KEY(charge_back_id) REFERENCES charge_back(id), \n");
         builder.append("); \n");
 
-        System.out.println(builder.toString());
+        System.out.println(builder);
         return builder.toString();
     }
 }
