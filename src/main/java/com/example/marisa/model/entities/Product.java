@@ -12,7 +12,8 @@ public class Product {
     Integer minimumStock;
     String creationDate;
 
-    public Product(Integer id, String name, Float sellPrice, Float buyPrice, Integer quantity, String size, String facet, String category, Integer minimumStock, String creationDate) {
+    public Product(Integer id, String name, Float sellPrice, Float buyPrice, Integer quantity, String size,
+            String facet, String category, Integer minimumStock, String creationDate) {
         this.id = id;
         this.name = name;
         this.sellPrice = sellPrice;
@@ -23,6 +24,20 @@ public class Product {
         this.category = category;
         this.minimumStock = minimumStock;
         this.creationDate = creationDate;
+    }
+
+    public Boolean validateFields() {
+        if (this.name != null) {
+            return false;
+        } else if (this.sellPrice != null) {
+            return false;
+        } else if (this.buyPrice != null) {
+            return false;
+        } else if (this.category != null) {
+            return false;
+        }
+
+        return true;
     }
 
     public Integer getId() {
