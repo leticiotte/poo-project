@@ -1,13 +1,13 @@
 package com.example.marisa.model.entities;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class ChargeBack {
-    private int id;
-    private Date date;
+    private Integer id;
+    private LocalDate date;
     private Sale sale;
 
-    public ChargeBack(int id, Date date, Sale sale) {
+    public ChargeBack(Integer id, LocalDate date, Sale sale) {
         this.id = id;
         this.date = date;
         this.sale = sale;
@@ -15,19 +15,19 @@ public class ChargeBack {
 
     public ChargeBack(){}
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

@@ -1,19 +1,21 @@
 package com.example.marisa.model.entities;
 
-public class Product {
-    Integer id;
-    String name;
-    Float sellPrice;
-    Float buyPrice;
-    Integer quantity;
-    String size;
-    String facet;
-    String category;
-    Integer minimumStock;
-    String creationDate;
+import java.time.LocalDate;
 
-    public Product(Integer id, String name, Float sellPrice, Float buyPrice, Integer quantity, String size,
-            String facet, String category, Integer minimumStock, String creationDate) {
+public class Product {
+    private Integer id;
+    private String name;
+    private double sellPrice;
+    private double buyPrice;
+    private Integer quantity;
+    private String size;
+    private String facet;
+    private String category;
+    private Integer minimumStock;
+    private LocalDate creationDate;
+
+    public Product(Integer id, String name, double sellPrice, double buyPrice, Integer quantity, String size,
+            String facet, String category, Integer minimumStock, LocalDate creationDate) {
         this.id = id;
         this.name = name;
         this.sellPrice = sellPrice;
@@ -28,10 +30,6 @@ public class Product {
 
     public Boolean validateFields() {
         if (this.name != null) {
-            return false;
-        } else if (this.sellPrice != null) {
-            return false;
-        } else if (this.buyPrice != null) {
             return false;
         } else if (this.category != null) {
             return false;
@@ -56,19 +54,19 @@ public class Product {
         this.name = name;
     }
 
-    public Float getSellPrice() {
+    public double getSellPrice() {
         return sellPrice;
     }
 
-    public void setSellPrice(Float sellPrice) {
+    public void setSellPrice(double sellPrice) {
         this.sellPrice = sellPrice;
     }
 
-    public Float getBuyPrice() {
+    public double getBuyPrice() {
         return buyPrice;
     }
 
-    public void setBuyPrice(Float buyPrice) {
+    public void setBuyPrice(double buyPrice) {
         this.buyPrice = buyPrice;
     }
 
@@ -112,11 +110,11 @@ public class Product {
         this.minimumStock = minimumStock;
     }
 
-    public String getCreationDate() {
+    public LocalDate getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(String creationDate) {
+    public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
 }
