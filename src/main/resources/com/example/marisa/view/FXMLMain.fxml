@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.marisa.controller.MainController">
+    <children>
+      <AnchorPane prefHeight="80.0" prefWidth="920.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+                <Label layoutX="392.0" layoutY="8.0" text="Marisa" AnchorPane.leftAnchor="391.0" AnchorPane.rightAnchor="391.0" AnchorPane.topAnchor="8.0">
+                    <font>
+                        <Font name="Apple SD Gothic Neo Regular" size="50.0" />
+                    </font>
+                </Label>
+         </children>
+      </AnchorPane>
+        <AnchorPane layoutY="79.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="79.0">
+            <children>
+                <Button fx:id="cashierManagement" layoutX="25.0" layoutY="51.0" mnemonicParsing="false" onAction="#cashierManagement" prefHeight="50.0" prefWidth="150.0" text="Gerenciar caixas" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="51.0" />
+                <Button fx:id="productsManagement" layoutX="25.0" layoutY="127.0" mnemonicParsing="false" onAction="#productsManagement" prefHeight="50.0" prefWidth="150.0" text="Gerenciar produtos" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="127.0" />
+                <Button fx:id="customerManagement" layoutX="25.0" layoutY="202.0" mnemonicParsing="false" onAction="#customerManagement" prefHeight="50.0" prefWidth="150.0" text="Gerenciar clientes" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="202.0" />
+                <Button fx:id="salesManagement" layoutX="25.0" layoutY="272.0" mnemonicParsing="false" onAction="#salesManagement" prefHeight="50.0" prefWidth="150.0" text="Gerenciar vendas" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="272.0" />
+                <Label layoutX="67.0" layoutY="14.0" prefHeight="33.0" prefWidth="70.0" text="Acoes" AnchorPane.leftAnchor="66.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="10.0">
+                    <font>
+                        <Font name="Apple SD Gothic Neo Regular" size="25.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="200.0" layoutY="80.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="79.0">
+            <children>
+                <Label layoutX="24.0" layoutY="12.0" prefHeight="33.0" prefWidth="109.0" text="Vendas" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="10.0">
+                    <font>
+                        <Font name="Apple SD Gothic Neo Regular" size="25.0" />
+                    </font>
+                </Label>
+                <Button fx:id="openCashier" layoutX="148.0" layoutY="11.0" mnemonicParsing="false" onAction="#openCashier" prefHeight="33.0" prefWidth="115.0" text="Abrir caixa" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="11.0" />
+                <Button fx:id="closeCashier" disable="true" layoutX="285.0" layoutY="12.0" mnemonicParsing="false" onAction="#closeCashier" prefHeight="33.0" prefWidth="115.0" text="Fechar caixa" AnchorPane.leftAnchor="285.0" AnchorPane.topAnchor="11.0" />
+
+                <Button fx:id="openSale" disable="true" layoutX="580.0" layoutY="14.0" mnemonicParsing="false" onAction="#openSale" prefHeight="33.0" prefWidth="115.0" style="-fx-border-color: red; -fx-border-radius: 3px;" text="Registrar venda" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="11.0" />
+                <TableView fx:id="tableView" layoutX="41.0" layoutY="73.0" prefHeight="421.0" prefWidth="640.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="75.0">
+                    <columns>
+                        <TableColumn fx:id="cId" prefWidth="62.0" text="Id" />
+                        <TableColumn fx:id="cCpf" prefWidth="121.0" text="CPF" />
+                        <TableColumn fx:id="cDate" prefWidth="99.0" text="Data/horario" />
+                        <TableColumn fx:id="cTotalValue" prefWidth="82.0" text="Valor total" />
+                        <TableColumn fx:id="cTotalDiscount" prefWidth="89.0" text="Valor total" />
+                        <TableColumn fx:id="cStatus" prefWidth="82.0" text="Status" />
+                        <TableColumn fx:id="cPaymentType" prefWidth="103.0" text="Pagamento" />
+                    </columns>
+                </TableView>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
