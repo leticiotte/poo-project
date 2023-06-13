@@ -14,8 +14,11 @@ public class Product {
     private Integer minimumStock;
     private LocalDate creationDate;
 
+    public Product() {
+    }
+
     public Product(Integer id, String name, double sellPrice, double buyPrice, Integer quantity, String size,
-            String facet, String category, Integer minimumStock, LocalDate creationDate) {
+                   String facet, String category, Integer minimumStock, LocalDate creationDate) {
         this.id = id;
         this.name = name;
         this.sellPrice = sellPrice;
