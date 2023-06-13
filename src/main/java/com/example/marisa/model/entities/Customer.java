@@ -13,8 +13,11 @@ public class Customer {
     private String country;
     private String zipcode;
 
+    public Customer() {
+    }
+
     public Customer(String name, String cpf, String phone, String email, String status, Integer number,
-            String street, String complement, String city, String country, String zipcode) {
+                    String street, String complement, String city, String country, String zipcode) {
         this.name = name;
         this.cpf = cpf;
         this.phone = phone;
