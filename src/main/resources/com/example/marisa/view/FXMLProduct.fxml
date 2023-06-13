@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.marisa.controller.ProductController">
+    <children>
+        <AnchorPane prefHeight="70.0" prefWidth="920.0" style="-fx-background-color: #C3C49E;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label layoutX="79.0" layoutY="24.0" text="Produto" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="14.0">
+                    <font>
+                        <Font size="35.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutY="70.0" prefHeight="253.0" prefWidth="920.0" style="-fx-border-bottom-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+            <children>
+                <Label layoutX="61.0" layoutY="71.0" text="Nome:" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="71.0" />
+                <TextField fx:id="inpName" layoutX="153.0" layoutY="66.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="66.0" />
+                <Label layoutX="61.0" layoutY="111.0" text="Preco compra:" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="111.0" />
+                <TextField fx:id="inpBuyPrice" layoutX="153.0" layoutY="106.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="106.0" />
+                <Label layoutX="61.0" layoutY="151.0" text="Preco venda:" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="151.0" />
+                <TextField fx:id="inpSellPrice" layoutX="153.0" layoutY="146.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="146.0" />
+                <Label layoutX="61.0" layoutY="189.0" text="Tamanho:" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="189.0" />
+                <TextField fx:id="inpSize" layoutX="153.0" layoutY="185.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="185.0" />
+                <Label layoutX="61.0" layoutY="228.0" text="Faceta:" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="228.0" />
+                <TextField fx:id="inpFacet" layoutX="153.0" layoutY="223.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="223.0" />
+                <Label layoutX="61.0" layoutY="268.0" text="Categoria:" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="268.0" />
+                <TextField fx:id="inpCategory" layoutX="153.0" layoutY="263.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="263.0" />
+                <Label layoutX="61.0" layoutY="307.0" text="Estoque minimo:" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="307.0" />
+                <TextField fx:id="inpMinimumStock" layoutX="153.0" layoutY="302.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="302.0" />
+                <Label layoutX="60.0" layoutY="347.0" text="Estoque:" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="347.0" />
+                <TextField fx:id="inpStock" layoutX="160.0" layoutY="342.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="342.0" />
+                <Button fx:id="btnSaveOrUpdate" layoutX="757.0" layoutY="384.0" mnemonicParsing="false" onAction="#saveOrUpdate" prefHeight="26.0" prefWidth="103.0" text="Salvar" AnchorPane.leftAnchor="757.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="384.0" />
+                <Button fx:id="btnCancel" layoutX="630.0" layoutY="384.0" mnemonicParsing="false" onAction="#cancel" prefHeight="26.0" prefWidth="103.0" text="Cancelar" AnchorPane.leftAnchor="630.0" AnchorPane.rightAnchor="187.0" AnchorPane.topAnchor="384.0" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

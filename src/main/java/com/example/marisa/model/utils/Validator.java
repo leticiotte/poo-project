@@ -1,4 +1,4 @@
-package com.example.marisa.persistence.utils;
+package com.example.marisa.model.utils;
 
 import java.util.ArrayList;
 import java.lang.reflect.Field;

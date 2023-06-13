@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.marisa.controller.ProductManagementController">
+   <children>
+      <AnchorPane prefHeight="70.0" prefWidth="920.0" style="-fx-background-color: #C3C49E;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="79.0" layoutY="24.0" text="Caixas" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="14.0">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="68.0" prefHeight="672.0" prefWidth="920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="68.0">
+         <children>
+            <TableView fx:id="tableView" layoutX="61.0" layoutY="52.0" prefHeight="358.0" prefWidth="798.0" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="61.0" AnchorPane.topAnchor="55.0">
+              <columns>
+                <TableColumn id="cId" prefWidth="98.0" text="Id" />
+                <TableColumn id="cName" prefWidth="110.0" text="Nome" />
+                  <TableColumn id="cBuyPrice" prefWidth="85.0" text="Preco compra" />
+                  <TableColumn id="cSellPrice" prefWidth="72.0" text="Preco venda" />
+                  <TableColumn id="cSize" minWidth="0.0" prefWidth="100.0" text="Tamanho" />
+                  <TableColumn id="cFacet" prefWidth="53.0" text="Faceta" />
+                  <TableColumn id="cCategory" prefWidth="77.0" text="Categoria" />
+                  <TableColumn id="cMinimumStock" prefWidth="97.0" text="Estoque minimo" />
+                  <TableColumn id="cCreationDate" minWidth="0.0" prefWidth="105.0" text="Data entrada" />
+              </columns>
+            </TableView>
+            <Button fx:id="btnDelete" layoutX="584.0" layoutY="465.0" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="26.0" prefWidth="126.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="465.0" />
+            <Button fx:id="btnEdit" layoutX="733.0" layoutY="465.0" mnemonicParsing="false" onAction="#editProduct" prefHeight="26.0" prefWidth="126.0" text="Editar" AnchorPane.rightAnchor="61.0" AnchorPane.topAnchor="465.0" />
+            <Button fx:id="btnBack" layoutX="61.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToPreviousScene" prefHeight="26.0" prefWidth="126.0" text="Voltar" />
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

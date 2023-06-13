@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.marisa.controller.CustomerManagementController">
+    <children>
+        <AnchorPane prefHeight="70.0" prefWidth="920.0" style="-fx-background-color: #C3C49E;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label layoutX="79.0" layoutY="24.0" text="Clientes" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="14.0">
+                    <font>
+                        <Font size="35.0" />
+                    </font>
+                </Label>
+                <Button fx:id="btnBack" layoutX="780.0" layoutY="23.0" mnemonicParsing="false" onAction="#backToPreviousScene" prefHeight="26.0" prefWidth="126.0" text="Voltar" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="23.0" />
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutY="68.0" prefHeight="672.0" prefWidth="920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="68.0">
+            <children>
+                <Label layoutX="25.0" layoutY="19.0" text="CPF:" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="19.0" />
+                <TextField fx:id="inpSearch" layoutX="69.0" layoutY="15.0" AnchorPane.leftAnchor="69.0" AnchorPane.topAnchor="15.0" />
+                <Button fx:id="btnSearch" layoutX="244.0" layoutY="15.0" mnemonicParsing="false" onAction="#search" text="Buscar" AnchorPane.leftAnchor="244.0" AnchorPane.topAnchor="15.0" />
+                <TableView fx:id="tableView" layoutX="61.0" layoutY="52.0" prefHeight="358.0" prefWidth="798.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="55.0">
+                    <columns>
+                        <TableColumn fx:id="cName" prefWidth="283.0" text="Nome" />
+                        <TableColumn fx:id="cCpf" prefWidth="128.0" text="CPF" />
+                        <TableColumn fx:id="cPhone" prefWidth="103.0" text="Telefone" />
+                        <TableColumn fx:id="cEmail" minWidth="0.0" prefWidth="174.0" text="Email" />
+                        <TableColumn fx:id="cZipcode" minWidth="0.0" prefWidth="88.0" text="CEP" />
+                        <TableColumn fx:id="cCity" minWidth="0.0" prefWidth="93.0" text="Cidade" />
+                    </columns>
+                </TableView>
+                <Button fx:id="btnDelete" layoutX="498.0" layoutY="14.0" mnemonicParsing="false" onAction="#deleteCustomer" prefHeight="26.0" prefWidth="126.0" text="Deletar" AnchorPane.rightAnchor="296.0" AnchorPane.topAnchor="14.0" />
+                <Button fx:id="btnEdit" layoutX="634.0" layoutY="14.0" mnemonicParsing="false" onAction="#editCustomer" prefHeight="26.0" prefWidth="126.0" text="Editar" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="14.0" />
+                <Button fx:id="btnAddCustomer" layoutX="769.0" layoutY="14.0" mnemonicParsing="false" onAction="#addCustomer" prefHeight="26.0" prefWidth="126.0" text="Adicionar" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="14.0" />
+                <Button fx:id="btnExport" layoutX="779.0" layoutY="24.0" mnemonicParsing="false" onAction="#export" prefHeight="26.0" prefWidth="126.0" text="Exportar" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

@@ -23,7 +23,6 @@ public class MainController {
     public TableColumn<Sale, String> cStatus;
     public TableColumn<Sale, String> cPaymentType;
 
-
     @FXML
     private void initialize() {
         //validar status do caixa - mudar disable dos botões
@@ -37,7 +36,8 @@ public class MainController {
 
     }
 
-    public void customerManagement(ActionEvent actionEvent) {
+    public void customerManagement(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("FXMLCustomerManagement");
     }
 
     public void salesManagement(ActionEvent actionEvent) {

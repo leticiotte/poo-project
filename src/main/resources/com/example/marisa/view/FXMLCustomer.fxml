@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.marisa.controller.CustomerController">
+    <children>
+        <AnchorPane prefHeight="70.0" prefWidth="920.0" style="-fx-background-color: #C3C49E;"
+                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label layoutX="79.0" layoutY="24.0" text="Cliente" AnchorPane.leftAnchor="50.0"
+                       AnchorPane.topAnchor="14.0">
+                    <font>
+                        <Font size="35.0"/>
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutY="70.0" prefHeight="253.0" prefWidth="920.0" style="-fx-border-bottom-color: black;"
+                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                    AnchorPane.topAnchor="70.0">
+            <children>
+                <Label layoutX="61.0" layoutY="71.0" text="Nome:" AnchorPane.leftAnchor="60.0"
+                       AnchorPane.topAnchor="71.0"/>
+                <TextField fx:id="inpName" layoutX="153.0" layoutY="66.0" AnchorPane.leftAnchor="160.0"
+                           AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="66.0"/>
+                <Label layoutX="61.0" layoutY="111.0" text="CPF:" AnchorPane.leftAnchor="60.0"
+                       AnchorPane.topAnchor="111.0"/>
+                <TextField fx:id="inpCpf" layoutX="153.0" layoutY="106.0" AnchorPane.leftAnchor="160.0"
+                           AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="106.0"/>
+                <Label layoutX="61.0" layoutY="151.0" text="Telefone:" AnchorPane.leftAnchor="60.0"
+                       AnchorPane.topAnchor="151.0"/>
+                <TextField fx:id="inpPhone" layoutX="153.0" layoutY="146.0" AnchorPane.leftAnchor="160.0"
+                           AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="146.0"/>
+                <Label layoutX="61.0" layoutY="189.0" text="Email:" AnchorPane.leftAnchor="60.0"
+                       AnchorPane.topAnchor="189.0"/>
+                <TextField fx:id="inpEmail" layoutX="153.0" layoutY="185.0" AnchorPane.leftAnchor="160.0"
+                           AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="185.0"/>
+                <Label layoutX="61.0" layoutY="228.0" text="Rua:" AnchorPane.leftAnchor="60.0"
+                       AnchorPane.topAnchor="228.0"/>
+                <TextField fx:id="inpStreet" layoutX="153.0" layoutY="223.0" AnchorPane.leftAnchor="160.0"
+                           AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="223.0"/>
+                <Label layoutX="61.0" layoutY="268.0" text="Numero:" AnchorPane.leftAnchor="60.0"
+                       AnchorPane.topAnchor="268.0"/>
+                <TextField fx:id="inpNumber" layoutX="153.0" layoutY="263.0" AnchorPane.leftAnchor="160.0"
+                           AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="263.0"/>
+                <Label layoutX="61.0" layoutY="307.0" text="Complemento:" AnchorPane.leftAnchor="60.0"
+                       AnchorPane.topAnchor="307.0"/>
+                <TextField fx:id="inpComplement" layoutX="153.0" layoutY="302.0" AnchorPane.leftAnchor="160.0"
+                           AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="302.0"/>
+                <Label layoutX="60.0" layoutY="347.0" text="Cidade:" AnchorPane.leftAnchor="60.0"
+                       AnchorPane.topAnchor="347.0"/>
+                <TextField fx:id="inpCity" layoutX="160.0" layoutY="342.0" AnchorPane.leftAnchor="160.0"
+                           AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="342.0"/>
+                <Label layoutX="60.0" layoutY="387.0" text="Pais" AnchorPane.leftAnchor="60.0"
+                       AnchorPane.topAnchor="387.0"/>
+                <TextField fx:id="inpCountry" layoutX="160.0" layoutY="382.0" AnchorPane.leftAnchor="160.0"
+                           AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="382.0"/>
+                <Label layoutX="60.0" layoutY="428.0" text="CEP:" AnchorPane.leftAnchor="60.0"
+                       AnchorPane.topAnchor="428.0"/>
+                <TextField fx:id="inpZipcode" layoutX="160.0" layoutY="423.0" AnchorPane.leftAnchor="160.0"
+                           AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="423.0"/>
+                <Button fx:id="btnSaveOrUpdate" layoutX="757.0" layoutY="463.0" mnemonicParsing="false"
+                        onAction="#saveOrUpdate" prefHeight="26.0" prefWidth="103.0" text="Salvar"
+                        AnchorPane.leftAnchor="757.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="463.0"/>
+                <Button fx:id="btnCancel" layoutX="630.0" layoutY="463.0" mnemonicParsing="false" onAction="#cancel"
+                        prefHeight="26.0" prefWidth="103.0" text="Cancelar" AnchorPane.leftAnchor="630.0"
+                        AnchorPane.rightAnchor="187.0" AnchorPane.topAnchor="463.0"/>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

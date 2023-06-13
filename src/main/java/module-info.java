@@ -10,6 +10,9 @@ module com.example.marisa {
     opens com.example.marisa.view to javafx.fxml;
     opens com.example.marisa.controller to javafx.fxml;
 
+    opens com.example.marisa.model.entities to javafx.base;
+
+
     exports com.example.marisa.view;
     exports com.example.marisa.controller;
 }
