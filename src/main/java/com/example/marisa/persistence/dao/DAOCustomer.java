@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class DAOCustomer implements DAO<Customer, Integer> {
+public class DAOCustomer implements DAO<Customer, String> {
 
   @Override
   public void save(Customer entity) {
@@ -30,11 +30,11 @@ public class DAOCustomer implements DAO<Customer, Integer> {
   @Override
   public void update(Customer entity) {
     String sql = "UPDATE Customer SET name = ?, phone = ?, email = ?, status = ?, number = ?, street = ?, " +
-        "complement = ?, city = ?, country = ?, zipcode = ? WHERE id = ? AND active = true";
+        "complement = ?, city = ?, country = ?, zipcode = ? WHERE cpf = ? AND active = true";
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
       setEntityToPreparedStatementUpdate(entity, stmt);
-      stmt.setInt(11, entity.getId());
+      stmt.setString(11, entity.getCpf());
       stmt.executeQuery();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -43,7 +43,7 @@ public class DAOCustomer implements DAO<Customer, Integer> {
 
   @Override
   public void saveOrUpdate(Customer entity) {
-    Optional<Customer> result = select(entity.getId());
+    Optional<Customer> result = select(entity.getCpf());
     if (result.isPresent()) {
       update(entity);
     } else {
@@ -52,11 +52,11 @@ public class DAOCustomer implements DAO<Customer, Integer> {
   }
 
   @Override
-  public void delete(Integer key) {
-    String sql = "UPDATE customer SET active = false WHERE id = ?";
+  public void delete(String key) {
+    String sql = "UPDATE customer SET active = false WHERE cpf = ?";
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
-      stmt.setInt(1, key);
+      stmt.setString(1, key);
       stmt.executeQuery();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -64,12 +64,12 @@ public class DAOCustomer implements DAO<Customer, Integer> {
   }
 
   @Override
-  public Optional<Customer> select(Integer key) {
-    String sql = "SELECT * FROM customer WHERE id = ? AND active = true";
+  public Optional<Customer> select(String key) {
+    String sql = "SELECT * FROM customer WHERE cpf = ? AND active = true";
     List<Customer> customers = new ArrayList<>();
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
-      stmt.setInt(1, key);
+      stmt.setString(1, key);
       ResultSet rs = stmt.executeQuery();
       while (rs.next()) {
         Customer customer = getEntityFromResultSet(rs);
@@ -119,7 +119,6 @@ public class DAOCustomer implements DAO<Customer, Integer> {
 
   public Customer getEntityFromResultSet(ResultSet rs) throws SQLException {
     Customer contact = new Customer(
-        rs.getInt("id"),
         rs.getString("name"),
         rs.getString("cpf"),
         rs.getString("complement"),

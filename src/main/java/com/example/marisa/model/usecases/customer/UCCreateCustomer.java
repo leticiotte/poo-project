@@ -15,12 +15,8 @@ public class UCCreateCustomer {
     }
 
     public void createCustomer(Customer customer) throws Exception {
-        if (this.daoCustomer.select(customer.getId()).isPresent()) {
+        if (this.daoCustomer.select(customer.getCpf()).isPresent()) {
             throw new Exception("Cliente já cadastrado no sistema");
-        }
-
-        if ((this.daoCustomer.selectBy("cpf", customer.getCpf())) != null) {
-            throw new Exception("CPF já cadastrado no sistema");
         }
 
         ArrayList<String> params = new ArrayList<>(Arrays.asList("id", "name", "cpf", "phone", "email", "status",

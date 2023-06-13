@@ -3,6 +3,7 @@ package com.example.marisa.persistence.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -53,7 +54,7 @@ public class DAOProduct implements DAO<Product, Integer> {
 
   @Override
   public void delete(Integer key) {
-    String sql = "DELETE FROM product WHERE id = ?";
+    String sql = "UPDATE product SET active = false WHERE id = ?";
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
       stmt.setInt(1, key);
@@ -128,15 +129,15 @@ public class DAOProduct implements DAO<Product, Integer> {
         rs.getString("facet"),
         rs.getString("category"),
         rs.getInt("minimumStock"),
-        rs.getString("creationDate"));
+            LocalDate.parse(rs.getString("creationDate")));
     return contact;
   }
 
   protected void setEntityToPreparedStatement(Product entity, PreparedStatement stmt)
       throws SQLException {
     stmt.setString(1, entity.getName());
-    stmt.setFloat(2, entity.getSellPrice());
-    stmt.setFloat(3, entity.getBuyPrice());
+    stmt.setDouble(2, entity.getSellPrice());
+    stmt.setDouble(3, entity.getBuyPrice());
     stmt.setInt(4, entity.getQuantity());
     stmt.setString(5, entity.getFacet());
     stmt.setString(6, entity.getCategory());

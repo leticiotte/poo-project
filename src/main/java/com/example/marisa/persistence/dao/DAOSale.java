@@ -80,7 +80,7 @@ public class DAOSale implements DAO<Sale, Integer> {
   public List<Sale> selectBy(String field, String value) {
     throw new UnsupportedOperationException("Unimplemented method 'selectBy'");
   }
-  public List<Sale> selectSalesByProduct(Product product) {
+  public List<Sale> selectSalesByProduct(Integer id) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'selectAll'");
   }

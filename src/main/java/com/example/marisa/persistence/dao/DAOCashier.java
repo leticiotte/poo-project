@@ -33,7 +33,7 @@ public class DAOCashier implements DAO<Cashier, Integer> {
         String sql = "INSERT INTO cashier (openingBalance, status) VALUES (?,?)";
 
         try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
-            stmt.setFloat(1, cashier.getOpeningBalance());
+            stmt.setDouble(1, cashier.getOpeningBalance());
             stmt.setString(2, cashier.getStatus().name());
 
             stmt.executeUpdate();
@@ -47,7 +47,7 @@ public class DAOCashier implements DAO<Cashier, Integer> {
         String sql = "UPDATE cashier SET openingBalance = ?, status = ? WHERE id = ?";
 
         try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
-            stmt.setFloat(1, cashier.getOpeningBalance());
+            stmt.setDouble(1, cashier.getOpeningBalance());
             stmt.setString(2, cashier.getStatus().name());
             stmt.setInt(3, cashier.getId());
 
@@ -62,7 +62,7 @@ public class DAOCashier implements DAO<Cashier, Integer> {
         String sql = "UPDATE cashier SET finalBalance = ?, status = ? WHERE id = ?";
 
         try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
-            stmt.setFloat(1, cashier.getFinalBalance());
+            stmt.setDouble(1, cashier.getFinalBalance());
             stmt.setString(2, cashier.getStatus().name());
             stmt.setInt(3, cashier.getId());
 

@@ -1,6 +1,5 @@
 package com.example.marisa.model.usecases.customer;
 
-import com.example.marisa.model.entities.Customer;
 import com.example.marisa.persistence.dao.DAOCustomer;
 
 public class UCDeleteCustomer {
@@ -10,11 +9,11 @@ public class UCDeleteCustomer {
     this.daoCustomer = daoCustomer;
   }
 
-  public void deleteCustomer(Customer customer) throws Exception {
-    if (customer.getId() == null) {
+  public void deleteCustomer(String cpf) throws Exception {
+    if (daoCustomer.select(cpf).isEmpty()) {
       throw new Exception("Cliente não está cadastrado no sistema.");
     }
 
-    this.daoCustomer.delete(customer.getId());
+    this.daoCustomer.delete(cpf);
   }
 }
