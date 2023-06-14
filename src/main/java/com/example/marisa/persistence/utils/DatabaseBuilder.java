@@ -46,7 +46,7 @@ public class DatabaseBuilder {
         builder.append("category TEXT NOT NULL, \n");
         builder.append("minimumStock INTEGER, \n");
         builder.append("creationDate TEXT, \n");
-        builder.append("active TEXT DEFAULT 'true' NOT NULL");
+        builder.append("active INTEGER DEFAULT 1 NOT NULL");
         builder.append("); \n");
 
         System.out.println(builder);
@@ -69,7 +69,7 @@ public class DatabaseBuilder {
         builder.append("city TEXT NOT NULL, \n");
         builder.append("country TEXT NOT NULL, \n");
         builder.append("zipcode TEXT NOT NULL, \n");
-        builder.append("active TEXT DEFAULT 'true' NOT NULL");
+        builder.append("active INTEGER DEFAULT 1 NOT NULL");
         builder.append("); \n");
 
         System.out.println(builder);

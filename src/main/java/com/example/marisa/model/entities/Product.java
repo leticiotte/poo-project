@@ -32,13 +32,7 @@ public class Product {
     }
 
     public Boolean validateFields() {
-        if (this.name != null) {
-            return false;
-        } else if (this.category != null) {
-            return false;
-        }
-
-        return true;
+        return this.name != null && this.category != null;
     }
 
     public Integer getId() {

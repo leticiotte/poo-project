@@ -35,7 +35,7 @@ public class DAOCustomer implements DAO<Customer, String> {
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
       setEntityToPreparedStatementUpdate(entity, stmt);
       stmt.setString(11, entity.getCpf());
-      stmt.executeQuery();
+      stmt.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }
