@@ -98,7 +98,25 @@ public class DAOCashier implements DAO<Cashier, Integer> {
 
         try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
-            cashier = getEntityFromResultSet(rs);
+
+            if(rs.next()) cashier = getEntityFromResultSet(rs);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.printf("Estou no return");
+        return cashier;
+    }
+
+    public Cashier selectById(Integer id){
+        String sql = "SELECT id, openingBalance, finalBalance, status FROM cashier WHERE id = ?";
+        Cashier cashier = new Cashier();
+
+        try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()) cashier = getEntityFromResultSet(rs);
 
         } catch (SQLException e) {
             e.printStackTrace();
