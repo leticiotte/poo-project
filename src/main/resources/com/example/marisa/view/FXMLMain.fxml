@@ -6,22 +6,22 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.marisa.controller.MainController">
     <children>
-      <AnchorPane prefHeight="80.0" prefWidth="920.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
+        <AnchorPane prefHeight="80.0" prefWidth="920.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
                 <Label layoutX="392.0" layoutY="8.0" text="Marisa" AnchorPane.leftAnchor="391.0" AnchorPane.rightAnchor="391.0" AnchorPane.topAnchor="8.0">
                     <font>
                         <Font name="Apple SD Gothic Neo Regular" size="50.0" />
                     </font>
                 </Label>
-         </children>
-      </AnchorPane>
+            </children>
+        </AnchorPane>
         <AnchorPane layoutY="79.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="79.0">
             <children>
                 <Button fx:id="cashierManagement" layoutX="25.0" layoutY="51.0" mnemonicParsing="false" onAction="#cashierManagement" prefHeight="50.0" prefWidth="150.0" text="Gerenciar caixas" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="51.0" />
                 <Button fx:id="productsManagement" layoutX="25.0" layoutY="127.0" mnemonicParsing="false" onAction="#productsManagement" prefHeight="50.0" prefWidth="150.0" text="Gerenciar produtos" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="127.0" />
                 <Button fx:id="customerManagement" layoutX="25.0" layoutY="202.0" mnemonicParsing="false" onAction="#customerManagement" prefHeight="50.0" prefWidth="150.0" text="Gerenciar clientes" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="202.0" />
                 <Button fx:id="salesManagement" layoutX="25.0" layoutY="272.0" mnemonicParsing="false" onAction="#salesManagement" prefHeight="50.0" prefWidth="150.0" text="Gerenciar vendas" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="272.0" />
-                <Label layoutX="67.0" layoutY="14.0" prefHeight="33.0" prefWidth="70.0" text="Acoes" AnchorPane.leftAnchor="66.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="10.0">
+                <Label layoutX="67.0" layoutY="14.0" prefHeight="33.0" prefWidth="70.0" text="Ações" AnchorPane.leftAnchor="66.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="10.0">
                     <font>
                         <Font name="Apple SD Gothic Neo Regular" size="25.0" />
                     </font>
@@ -49,6 +49,9 @@
                         <TableColumn fx:id="cStatus" prefWidth="82.0" text="Status" />
                         <TableColumn fx:id="cPaymentType" prefWidth="103.0" text="Pagamento" />
                     </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
                 </TableView>
             </children>
         </AnchorPane>

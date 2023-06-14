@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.marisa.controller.CloseSaleController">
+    <children>
+        <Label layoutX="98.0" layoutY="31.0" prefHeight="26.0" prefWidth="205.0" text="Fechamento de compra" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="31.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+        <Label layoutX="40.0" layoutY="91.0" prefHeight="17.0" prefWidth="121.0" text="Forma de pagamento:" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="239.0" AnchorPane.topAnchor="91.0" />
+        <Button layoutX="155.0" layoutY="149.0" mnemonicParsing="false" onAction="#closeSale" prefHeight="26.0" prefWidth="90.0" text="Fechar" AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="155.0" AnchorPane.topAnchor="150.0" />
+      <ChoiceBox fx:id="selPaymentType" layoutX="171.0" layoutY="87.0" prefHeight="26.0" prefWidth="189.0" />
+    </children>
+</AnchorPane>
