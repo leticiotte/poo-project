@@ -1,4 +1,5 @@
 package com.example.marisa.controller;
+import static com.example.marisa.main.Main.*;
 
 import com.example.marisa.model.entities.Customer;
 import com.example.marisa.model.usecases.customer.UCCreateCustomer;
@@ -35,8 +36,6 @@ public class CustomerController {
 
     private Mode mode;
     private Customer customer;
-    private UCCreateCustomer ucCreateCustomer;
-    private UCUpdateCustomer ucUpdateCustomer;
 
     public void saveOrUpdate(ActionEvent actionEvent) throws IOException {
         getEntityToView();

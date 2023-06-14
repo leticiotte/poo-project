@@ -58,9 +58,8 @@ public class DatabaseBuilder {
         StringBuilder builder = new StringBuilder();
 
         builder.append("CREATE TABLE customer (\n");
-        builder.append("id INTEGER PRIMARY KEY AUTOINCREMENT, \n");
+        builder.append("cpf TEXT PRIMARY KEY, \n");
         builder.append("name TEXT NOT NULL, \n");
-        builder.append("cpf TEXT NOT NULL, \n");
         builder.append("phone TEXT NOT NULL, \n");
         builder.append("email TEXT NOT NULL, \n");
         builder.append("status TEXT NOT NULL, \n");
@@ -69,8 +68,8 @@ public class DatabaseBuilder {
         builder.append("complement TEXT NULL, \n");
         builder.append("city TEXT NOT NULL, \n");
         builder.append("country TEXT NOT NULL, \n");
-        builder.append("zipcode TEXT NOT NULL");
-        builder.append("active TEXT DEFAULT 'true' NOT NULL");
+        builder.append("zipcode TEXT NOT NULL, ");
+        builder.append("active INTEGER DEFAULT 1 NOT NULL\n");
         builder.append("); \n");
 
         System.out.println(builder);
@@ -113,7 +112,7 @@ public class DatabaseBuilder {
         builder.append("charge_back_id INTEGER, \n");
         builder.append("PRIMARY KEY (charge_back_id, sale_id), \n");
         builder.append("FOREIGN KEY(sale_id) REFERENCES sale(id), \n");
-        builder.append("FOREIGN KEY(charge_back_id) REFERENCES charge_back(id), \n");
+        builder.append("FOREIGN KEY(charge_back_id) REFERENCES charge_back(id) \n");
         builder.append("); \n");
 
         System.out.println(builder);

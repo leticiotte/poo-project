@@ -21,7 +21,7 @@ public class DAOCustomer implements DAO<Customer, String> {
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
       setEntityToPreparedStatement(entity, stmt);
-      stmt.executeQuery();
+      stmt.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -30,14 +30,14 @@ public class DAOCustomer implements DAO<Customer, String> {
   @Override
   public void update(Customer entity) {
     String sql = "UPDATE Customer SET name = ?, phone = ?, email = ?, status = ?, number = ?, street = ?, " +
-        "complement = ?, city = ?, country = ?, zipcode = ? WHERE cpf = ? AND active = true";
+        "complement = ?, city = ?, country = ?, zipcode = ? WHERE cpf = ? AND active = 1";
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
       setEntityToPreparedStatementUpdate(entity, stmt);
-      stmt.setString(11, entity.getCpf());
-      stmt.executeQuery();
+      stmt.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
+      System.out.println(e);
     }
   }
 
@@ -53,11 +53,11 @@ public class DAOCustomer implements DAO<Customer, String> {
 
   @Override
   public void delete(String key) {
-    String sql = "UPDATE customer SET active = false WHERE cpf = ?";
+    String sql = "UPDATE customer SET active = 0 WHERE cpf = ?";
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
       stmt.setString(1, key);
-      stmt.executeQuery();
+      stmt.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -65,7 +65,7 @@ public class DAOCustomer implements DAO<Customer, String> {
 
   @Override
   public Optional<Customer> select(String key) {
-    String sql = "SELECT * FROM customer WHERE cpf = ? AND active = true";
+    String sql = "SELECT * FROM customer WHERE cpf = ? AND active = 1";
     List<Customer> customers = new ArrayList<>();
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
@@ -84,7 +84,7 @@ public class DAOCustomer implements DAO<Customer, String> {
 
   @Override
   public List<Customer> selectAll() {
-    String sql = "SELECT * FROM customer WHERE active = true";
+    String sql = "SELECT * FROM customer WHERE active = 1";
     List<Customer> customers = new ArrayList<>();
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
@@ -101,11 +101,14 @@ public class DAOCustomer implements DAO<Customer, String> {
 
   @Override
   public List<Customer> selectBy(String field, String value) {
-    String sql = "SELECT * FROM customer WHERE " + field + " = ? AND active = true";
+    String sql;
+    if(field == "name"){
+      sql = "SELECT * FROM customer WHERE UPPER(name) LIKE '%"+ value +"%' AND active = 1";
+    }else{
+      sql = "SELECT * FROM customer WHERE " + field + " = ? AND active = 1";
+    }
     List<Customer> customers = new ArrayList<>();
-
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
-      stmt.setString(1, value);
       ResultSet rs = stmt.executeQuery();
       while (rs.next()) {
         Customer customer = getEntityFromResultSet(rs);
@@ -121,25 +124,24 @@ public class DAOCustomer implements DAO<Customer, String> {
     Customer contact = new Customer(
         rs.getString("name"),
         rs.getString("cpf"),
-        rs.getString("complement"),
-        rs.getString("street"),
-        rs.getString("zipcode"),
-        rs.getInt("number"),
-        rs.getString("city"),
-        rs.getString("country"),
         rs.getString("phone"),
         rs.getString("email"),
-        rs.getString("status"));
+        rs.getString("status"),
+        rs.getInt("number"),
+        rs.getString("street"),
+        rs.getString("complement"),
+        rs.getString("city"),
+        rs.getString("country"),
+        rs.getString("zipcode"));
     return contact;
   }
 
-  protected void setEntityToPreparedStatement(Customer entity, PreparedStatement stmt)
-      throws SQLException {
+  protected void setEntityToPreparedStatement(Customer entity, PreparedStatement stmt) throws SQLException {
     stmt.setString(1, entity.getName());
     stmt.setString(2, entity.getCpf());
     stmt.setString(3, entity.getPhone());
     stmt.setString(4, entity.getEmail());
-    stmt.setString(5, entity.getStatus());
+    stmt.setString(5, "created");
     stmt.setInt(6, entity.getNumber());
     stmt.setString(7, entity.getStreet());
     stmt.setString(8, entity.getComplement());
@@ -148,18 +150,18 @@ public class DAOCustomer implements DAO<Customer, String> {
     stmt.setString(11, entity.getZipcode());
   }
 
-  protected void setEntityToPreparedStatementUpdate(Customer entity, PreparedStatement stmt)
-      throws SQLException {
+  protected void setEntityToPreparedStatementUpdate(Customer entity, PreparedStatement stmt) throws SQLException {
     stmt.setString(1, entity.getName());
     stmt.setString(2, entity.getPhone());
     stmt.setString(3, entity.getEmail());
-    stmt.setString(4, entity.getStatus());
+    stmt.setString(4, "updated");
     stmt.setInt(5, entity.getNumber());
     stmt.setString(6, entity.getStreet());
     stmt.setString(7, entity.getComplement());
     stmt.setString(8, entity.getCity());
     stmt.setString(9, entity.getCountry());
     stmt.setString(10, entity.getZipcode());
+    stmt.setString(11, entity.getCpf());
   }
 
 }

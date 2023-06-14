@@ -15,17 +15,21 @@ public class UCCreateCustomer {
     }
 
     public void createCustomer(Customer customer) throws Exception {
-        if (this.daoCustomer.select(customer.getCpf()).isPresent()) {
-            throw new Exception("Cliente já cadastrado no sistema");
+        try{
+            if (this.daoCustomer.select(customer.getCpf()).isPresent()) {
+                throw new Exception("Cliente já cadastrado no sistema");
+            }
+
+            ArrayList<String> params = new ArrayList<>(Arrays.asList("name", "cpf", "phone", "email",
+                    "number", "street", "complement", "city", "country", "zipcode"));
+
+            if (!Validator.validateFields(customer, params)) {
+                throw new Exception("Cliente não está com todos os campos obrigatórios preenchidos.");
+            }
+            this.daoCustomer.save(customer);
+        }catch(Exception e){
+            System.out.println(e);
         }
 
-        ArrayList<String> params = new ArrayList<>(Arrays.asList("id", "name", "cpf", "phone", "email", "status",
-                "number", "street", "complement", "city", "country", "zipcode"));
-
-        if (!Validator.validateFields(customer, params)) {
-            throw new Exception("Cliente não está com todos os campos obrigatórios preenchidos.");
-        }
-
-        this.daoCustomer.save(customer);
     }
 }

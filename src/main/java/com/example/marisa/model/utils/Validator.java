@@ -12,7 +12,7 @@ public class Validator {
             try {
                 Field field = classType.getDeclaredField(param);
                 field.setAccessible(true);
-                Object value = field.get(param);
+                Object value = field.get(entity);
 
                 if (value == null) {
                     return false;
