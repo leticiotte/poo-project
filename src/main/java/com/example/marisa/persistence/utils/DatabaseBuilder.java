@@ -192,7 +192,7 @@ public class DatabaseBuilder {
         builder.append("CREATE TABLE cashier (\n");
         builder.append("id INTEGER PRIMARY KEY AUTOINCREMENT, \n");
         builder.append("openingBalance REAL NOT NULL, \n");
-        builder.append("finalBalance REAL NOT NULL, \n");
+        builder.append("finalBalance REAL NULL, \n");
         builder.append("status TEXT NOT NULL");
         builder.append("); \n");
 

@@ -1,25 +1,26 @@
 package com.example.marisa.controller;
 
-import static com.example.marisa.main.Main.ucOpenCashier;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-public class OpenCashierController {
-    public TextField inpOpeningBalance;
+import static com.example.marisa.main.Main.ucCloseCashier;
+
+public class CloseCashierController {
+    public TextField inpFinalBalance;
     public TextField inpCashierId;
 
-    public void openCashier(ActionEvent actionEvent) throws Exception {
-        Double openingBalance = Double.parseDouble(inpOpeningBalance.getText());
+    public void closeCashier(ActionEvent actionEvent) throws Exception {
+        Double finalBalance = Double.parseDouble(inpFinalBalance.getText());
         Integer cashierId = Integer.parseInt(inpCashierId.getText());
 
         try {
-            ucOpenCashier.openCashier(openingBalance, cashierId);
+            ucCloseCashier.closeCashier(finalBalance, cashierId);
         }
         catch (Exception e){
-            showAlert("Erro!", "Erro ao abrir caixa.", Alert.AlertType.ERROR);
+            showAlert("Erro!", "Erro ao fechar caixa.", Alert.AlertType.ERROR);
         }
         closeCurrentWindow();
     }
@@ -33,7 +34,7 @@ public class OpenCashierController {
     }
 
     private void closeCurrentWindow() {
-        Window currentWindow = inpOpeningBalance.getScene().getWindow();
+        Window currentWindow = inpFinalBalance.getScene().getWindow();
         if (currentWindow instanceof Stage) {
             Stage currentStage = (Stage) currentWindow;
             currentStage.close();

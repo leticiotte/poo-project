@@ -4,14 +4,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.marisa.controller.OpenCashierController">
+<AnchorPane prefHeight="225.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.marisa.controller.OpenCashierController">
    <children>
-      <Label layoutX="127.0" layoutY="31.0" text="Abertura de caixa" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="30.0">
+      <Label layoutX="127.0" layoutY="31.0" text="Abrir caixa" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="30.0">
          <font>
             <Font size="20.0" />
          </font></Label>
-      <Label layoutX="58.0" layoutY="92.0" text="Saldo inicial:" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="274.5" AnchorPane.topAnchor="92.0" />
-      <Button layoutX="155.0" layoutY="149.0" mnemonicParsing="false" onAction="#openCashier" prefHeight="26.0" prefWidth="90.0" text="Abrir" AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="155.0" AnchorPane.topAnchor="150.0" />
-      <TextField fx:id="inpOpeningBalance" layoutX="146.0" layoutY="87.0" prefHeight="26.0" prefWidth="197.0" AnchorPane.leftAnchor="146.0" AnchorPane.rightAnchor="57.0" AnchorPane.topAnchor="87.0" />
+      <Label layoutX="58.0" layoutY="79.0" prefHeight="17.0" prefWidth="99.0" text="Número do Caixa:" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="243.0" AnchorPane.topAnchor="80.0" />
+      <Label layoutX="58.0" layoutY="113.0" text="Saldo Inicial:" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="274.5" AnchorPane.topAnchor="125.0" />
+      <Button layoutX="155.0" layoutY="169.0" mnemonicParsing="false" onAction="#openCashier" prefHeight="26.0" prefWidth="90.0" text="Abrir" AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="155.0" AnchorPane.topAnchor="170.0" />
+      <TextField fx:id="inpCashierId" layoutX="166.0" layoutY="76.0" prefHeight="26.0" prefWidth="178.0" AnchorPane.leftAnchor="166.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="76.0" />
+      <TextField fx:id="inpOpeningBalance" layoutX="166.0" layoutY="121.0" prefHeight="26.0" prefWidth="178.0" AnchorPane.leftAnchor="166.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="121.0" />
    </children>
 </AnchorPane>
