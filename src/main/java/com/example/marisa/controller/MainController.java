@@ -53,6 +53,8 @@ public class MainController {
         WindowLoader.openNewWindow("FXMLCloseCashier", "Fechar caixa");
     }
 
-    public void openSale(ActionEvent actionEvent) {
+    public void openSale(ActionEvent actionEvent) throws IOException {
+        WindowLoader.openNewWindow("FXMLOpenSale", "Abertura de compra");
+
     }
 }

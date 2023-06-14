@@ -38,7 +38,7 @@
                 <Button fx:id="openCashier" layoutX="148.0" layoutY="11.0" mnemonicParsing="false" onAction="#openCashier" prefHeight="33.0" prefWidth="115.0" text="Abrir caixa" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="11.0" />
                 <Button fx:id="closeCashier" layoutX="285.0" layoutY="12.0" mnemonicParsing="false" onAction="#closeCashier" prefHeight="33.0" prefWidth="115.0" text="Fechar caixa" AnchorPane.leftAnchor="285.0" AnchorPane.topAnchor="11.0" />
 
-                <Button fx:id="openSale" disable="true" layoutX="580.0" layoutY="14.0" mnemonicParsing="false" onAction="#openSale" prefHeight="33.0" prefWidth="115.0" style="-fx-border-color: red; -fx-border-radius: 3px;" text="Registrar venda" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="11.0" />
+                <Button fx:id="openSale" layoutX="580.0" layoutY="14.0" mnemonicParsing="false" onAction="#openSale" prefHeight="33.0" prefWidth="115.0" style="-fx-border-color: red; -fx-border-radius: 3px;" text="Registrar venda" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="11.0" />
                 <TableView fx:id="tableView" layoutX="41.0" layoutY="73.0" prefHeight="421.0" prefWidth="640.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="75.0">
                     <columns>
                         <TableColumn fx:id="cId" prefWidth="62.0" text="Id" />
