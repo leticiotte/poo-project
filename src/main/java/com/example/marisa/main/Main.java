@@ -1,5 +1,6 @@
 package com.example.marisa.main;
 
+import com.example.marisa.model.usecases.cashier.UCCloseCashier;
 import com.example.marisa.model.usecases.cashier.UCListCashier;
 import com.example.marisa.model.usecases.cashier.UCOpenCashier;
 import com.example.marisa.model.usecases.customer.UCCreateCustomer;
@@ -32,6 +33,7 @@ public class Main {
     public static UCSaleAddItem ucSaleAddItem;
     public static UCListCashier ucListCashier;
     public static UCOpenCashier ucOpenCashier;
+    public static UCCloseCashier ucCloseCashier;
 
     public static void main(String[] args) {
         configureInjection();
@@ -60,6 +62,7 @@ public class Main {
         DAOCashier daoCashier = new DAOCashier();
         ucListCashier = new UCListCashier(daoCashier);
         ucOpenCashier = new UCOpenCashier(daoCashier);
+        ucCloseCashier = new UCCloseCashier(daoCashier);
 
         DAOSale daoSale = new DAOSale();
         new UCSaleAddItem(daoSale);
