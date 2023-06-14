@@ -31,6 +31,7 @@ public class UCOpenCashier {
         }
         else{
             dbCashier.setOpeningBalance(openingBalance);
+            dbCashier.setFinalBalance(0);
             dbCashier.setStatus(CashierStatusEnum.OPENED);
 
             ArrayList<String> params = new ArrayList<>(Arrays.asList("id", "openingBalance", "status"));
