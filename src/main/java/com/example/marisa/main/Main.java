@@ -7,6 +7,7 @@ import com.example.marisa.model.usecases.customer.UCCreateCustomer;
 import com.example.marisa.model.usecases.customer.UCDeleteCustomer;
 import com.example.marisa.model.usecases.customer.UCListCustomers;
 import com.example.marisa.model.usecases.customer.UCUpdateCustomer;
+import com.example.marisa.model.usecases.sale.UCSaleList;
 import com.example.marisa.persistence.dao.DAOCashier;
 import com.example.marisa.model.usecases.sale.UCSaleAddItem;
 import com.example.marisa.model.usecases.sale.UCSaleAddItem;
@@ -34,6 +35,8 @@ public class Main {
     public static UCListCashier ucListCashier;
     public static UCOpenCashier ucOpenCashier;
     public static UCCloseCashier ucCloseCashier;
+
+    public static UCSaleList ucSaleList;
 
     public static void main(String[] args) {
         configureInjection();
@@ -66,5 +69,6 @@ public class Main {
 
         DAOSale daoSale = new DAOSale();
         ucSaleAddItem = new UCSaleAddItem(daoSale);
+        ucSaleList = new UCSaleList(daoSale);
     }
 }

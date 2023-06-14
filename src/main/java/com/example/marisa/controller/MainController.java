@@ -41,7 +41,8 @@ public class MainController {
         WindowLoader.setRoot("FXMLCustomerManagement");
     }
 
-    public void salesManagement(ActionEvent actionEvent) {
+    public void salesManagement(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("FXMLSaleManagement");
     }
 
     public void openCashier(ActionEvent actionEvent) throws IOException {
