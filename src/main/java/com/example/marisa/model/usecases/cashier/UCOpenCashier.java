@@ -3,12 +3,6 @@ package com.example.marisa.model.usecases.cashier;
 import com.example.marisa.model.entities.Cashier;
 import com.example.marisa.model.enumeration.CashierStatusEnum;
 import com.example.marisa.persistence.dao.DAOCashier;
-import com.example.marisa.model.utils.Validator;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 
 public class UCOpenCashier {
     private DAOCashier daoCashier;
