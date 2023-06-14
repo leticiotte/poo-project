@@ -3,6 +3,7 @@ package com.example.marisa.model.usecases.cashier;
 import com.example.marisa.model.entities.Cashier;
 import com.example.marisa.persistence.dao.DAOCashier;
 
+import java.util.List;
 import java.util.Optional;
 
 public class UCListCashier {
@@ -14,5 +15,9 @@ public class UCListCashier {
 
     public Optional<Cashier> listCashier(Integer id) {
         return this.daoCashier.select(id);
+    }
+
+    public List<Cashier> listAllCashiers(){
+        return this.daoCashier.selectAll();
     }
 }
