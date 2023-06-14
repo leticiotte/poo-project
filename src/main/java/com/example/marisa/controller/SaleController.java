@@ -2,11 +2,13 @@ package com.example.marisa.controller;
 
 import com.example.marisa.model.entities.KeyValuePair;
 import com.example.marisa.model.entities.Product;
+import com.example.marisa.view.WindowLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +39,7 @@ public class SaleController {
     }
 
     @FXML
-    private void initialize(){
+    private void initialize() {
         setInpDiscount();
         bindTableViewToItemsList();
         bindColumnsToValueSources();
@@ -48,20 +50,20 @@ public class SaleController {
     }
 
     private void bindColumnsToValueSources() {
-        
+
     }
 
     private void loadDataAndShow() {
-        
+
     }
 
-    private void setInpDiscount(){
+    private void setInpDiscount() {
         List<Product> productList = ucListProducts.listProducts();
         List<KeyValuePair> productsToSelect = new ArrayList<>();
-        for(Product product : productList){
+        for (Product product : productList) {
             productsToSelect.add(new KeyValuePair(product.getId(), product.getName()));
         }
-        for (KeyValuePair item : productsToSelect){
+        for (KeyValuePair item : productsToSelect) {
             selProducts.getItems().add(item);
         }
     }
@@ -77,6 +79,7 @@ public class SaleController {
     public void closeSale(ActionEvent actionEvent) {
     }
 
-    public void backToPreviousScene(ActionEvent actionEvent) {
+    public void backToPreviousScene(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("FXMLMain");
     }
 }
