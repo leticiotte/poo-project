@@ -8,16 +8,13 @@ import com.example.marisa.model.usecases.customer.UCDeleteCustomer;
 import com.example.marisa.model.usecases.customer.UCListCustomers;
 import com.example.marisa.model.usecases.customer.UCUpdateCustomer;
 import com.example.marisa.model.usecases.sale.UCSaleList;
-import com.example.marisa.persistence.dao.DAOCashier;
+import com.example.marisa.persistence.dao.*;
 import com.example.marisa.model.usecases.sale.UCSaleAddItem;
 import com.example.marisa.model.usecases.sale.UCSaleAddItem;
-import com.example.marisa.persistence.dao.DAOCustomer;
 import com.example.marisa.model.usecases.product.UCCreateProduct;
 import com.example.marisa.model.usecases.product.UCDeleteProduct;
 import com.example.marisa.model.usecases.product.UCListProducts;
 import com.example.marisa.model.usecases.product.UCUpdateProduct;
-import com.example.marisa.persistence.dao.DAOProduct;
-import com.example.marisa.persistence.dao.DAOSale;
 import com.example.marisa.persistence.dao.DAOSale;
 import com.example.marisa.persistence.utils.DatabaseBuilder;
 import com.example.marisa.view.WindowLoader;
@@ -68,7 +65,8 @@ public class Main {
         ucCloseCashier = new UCCloseCashier(daoCashier);
 
         DAOSale daoSale = new DAOSale();
-        ucSaleAddItem = new UCSaleAddItem(daoSale);
         ucSaleList = new UCSaleList(daoSale);
+        DAOSaleItem daoSaleItem = new DAOSaleItem();
+        ucSaleAddItem = new UCSaleAddItem(daoSaleItem);
     }
 }
