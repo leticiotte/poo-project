@@ -1,22 +1,27 @@
 package com.example.marisa.model.entities;
 
 import com.example.marisa.model.enumeration.PaymentMethodTypeEnum;
+import com.example.marisa.model.enumeration.SaleStatusEnum;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class Sale {
     private Integer id;
-    private String nf;
+    private Integer cashierId;
+    private String customerCpf;
     private List<SaleItem> products;
-    private Date date = new Date();;
-    private double totalDiscount;
-    private double totalValue;
+    private LocalDateTime date;
     private double totalPayablePrice;
+    private double totalDiscount;
     private PaymentMethodTypeEnum paymentType;
-    private Integer clientId;
-    private Integer idCashier;
+    private String nf;
+    private SaleStatusEnum saleStatusEnum;
 
-    public Sale() {
+    public Sale(Integer cashierId, String customerCpf) {
+        this.cashierId = cashierId;
+        this.customerCpf = customerCpf;
+        date = LocalDateTime.now();
     }
 
     public Integer getId() {
@@ -27,12 +32,19 @@ public class Sale {
         this.id = id;
     }
 
-    public String getNf() {
-        return nf;
+    public Integer getCashierId() {
+        return cashierId;
     }
 
-    public void setNf(String nf) {
-        this.nf = nf;
+    public void setCashierId(Integer cashierId) {
+        this.cashierId = cashierId;
+    }
+    public String getCustomerCpf() {
+        return customerCpf;
+    }
+
+    public void setCustomerCpf(String customerCpf) {
+        this.customerCpf = customerCpf;
     }
 
     public List<SaleItem> getProducts() {
@@ -43,12 +55,20 @@ public class Sale {
         this.products = products;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public double getTotalPayablePrice() {
+        return totalPayablePrice;
+    }
+
+    public void setTotalPayablePrice(double totalPayablePrice) {
+        this.totalPayablePrice = totalPayablePrice;
     }
 
     public double getTotalDiscount() {
@@ -59,14 +79,6 @@ public class Sale {
         this.totalDiscount = totalDiscount;
     }
 
-    public double getTotalValue() {
-        return totalValue;
-    }
-
-    public void setTotalValue(double totalValue) {
-        this.totalValue = totalValue;
-    }
-
     public PaymentMethodTypeEnum getPaymentType() {
         return paymentType;
     }
@@ -75,45 +87,36 @@ public class Sale {
         this.paymentType = paymentType;
     }
 
-    public Integer getClientId() {
-        return clientId;
+    public String getNf() {
+        return nf;
     }
 
-    public void setClientId(Integer clientId) {
-        this.clientId = clientId;
+    public void setNf(String nf) {
+        this.nf = nf;
     }
 
-    public void addProduct(SaleItem product) throws Exception {
-        if (product.isValidDiscount()) {
+    public SaleStatusEnum getSaleStatusEnum() {
+        return saleStatusEnum;
+    }
+
+    public void setSaleStatusEnum(SaleStatusEnum saleStatusEnum) {
+        this.saleStatusEnum = saleStatusEnum;
+    }
+
+    public void addProduct(SaleItem saleItem) throws Exception {
+        if (saleItem.isValidDiscount()) {
             if (this.products != null) {
-                this.products.add(product);
+                this.products.add(saleItem);
+                this.totalDiscount += saleItem.getDiscountValue();
+                this.totalDiscount += saleItem.getPayablePrice();
             } else {
-                this.products = Collections.singletonList(product);
+                this.products = Collections.singletonList(saleItem);
             }
         } else {
             throw new Exception("Produto não possui desconto válido.");
         }
     }
-
-    public boolean isProductsStockValid() {
-        for (SaleItem item : this.products) {
-            if (item.getQuantity() > item.getProduct().getQuantity()) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public void closeSale(PaymentMethodTypeEnum paymentType) throws Exception {
-        for (SaleItem item : this.products) {
-            if (item.isValidDiscount()) {
-                item.applyDiscount();
-                this.totalDiscount += item.getPrice() - item.getPriceWithDiscount();
-                this.totalValue += item.getPrice();
-            } else
-                throw new Exception("Desconto inválido para o item " + item.getProduct().getName());
-        }
-        this.totalPayablePrice = this.totalValue - this.totalDiscount;
+    public void closeSale(PaymentMethodTypeEnum paymentType) {
         this.paymentType = paymentType;
         this.nf = generateNF();
     }

@@ -4,8 +4,8 @@ public class SaleItem {
     private Product product;
     private Integer quantity;
     private double discount = 1;
-    private double price;
-    private double priceWithDiscount;
+    private double payablePrice;
+    private double discountValue;
 
     public SaleItem() {
     }
@@ -34,32 +34,30 @@ public class SaleItem {
         this.discount = discount;
     }
 
-    public double getPrice() {
-        return price;
+    public double getPayablePrice() {
+        return payablePrice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPayablePrice(double payablePrice) {
+        this.payablePrice = payablePrice;
     }
 
-    public double getPriceWithDiscount() {
-        return priceWithDiscount;
+    public double getDiscountValue() {
+        return discountValue;
     }
 
-    public void setPriceWithDiscount(double priceWithDiscount) {
-        this.priceWithDiscount = priceWithDiscount;
+    public void setDiscountValue(double discountValue) {
+        this.discountValue = discountValue;
     }
 
     public boolean isValidDiscount(){
-        double priceWithDiscount = this.product.getSellPrice() * this.discount;
+        double priceWithDiscount = (this.product.getSellPrice() * this.discount)/100;
         return !(priceWithDiscount < this.product.getBuyPrice());
     }
 
-    public void applyDiscount(){
-        if(this.isValidDiscount()){
-            this.price = this.quantity * this.product.getSellPrice();
-            this.priceWithDiscount = (this.quantity * this.product.getSellPrice()) * this.discount;
-        }
+    public void calculatePriceAndDiscount() {
+        double totalValueWithoutDiscount = product.getSellPrice() * quantity;
+        this.discountValue = (totalValueWithoutDiscount * this.discount)/100;
+        this.payablePrice = totalValueWithoutDiscount - discountValue;
     }
-
 }
