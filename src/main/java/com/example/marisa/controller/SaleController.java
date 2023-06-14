@@ -67,8 +67,8 @@ public class SaleController {
     }
 
     public void addProduct(ActionEvent actionEvent) {
-        Sale sale = new Sale();
-        ucSaleAddItem.saleAddItem();
+//        Sale sale = new Sale();
+//        ucSaleAddItem.saleAddItem();
     }
 
     public void deleteProduct(ActionEvent actionEvent) {
