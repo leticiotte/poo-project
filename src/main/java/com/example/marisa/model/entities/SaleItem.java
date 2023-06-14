@@ -1,6 +1,7 @@
 package com.example.marisa.model.entities;
 
 public class SaleItem {
+    private Integer saleId;
     private Product product;
     private Integer quantity;
     private double discount = 1;
@@ -8,6 +9,14 @@ public class SaleItem {
     private double discountValue;
 
     public SaleItem() {
+    }
+
+    public Integer getSaleId() {
+        return saleId;
+    }
+
+    public void setSaleId(Integer saleId) {
+        this.saleId = saleId;
     }
 
     public Product getProduct() {
@@ -53,6 +62,10 @@ public class SaleItem {
     public boolean isValidDiscount(){
         double priceWithDiscount = (this.product.getSellPrice() * this.discount)/100;
         return !(priceWithDiscount < this.product.getBuyPrice());
+    }
+
+    public boolean isValidStock(){
+        return this.quantity <= this.product.getQuantity();
     }
 
     public void calculatePriceAndDiscount() {
