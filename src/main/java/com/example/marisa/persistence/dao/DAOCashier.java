@@ -7,17 +7,19 @@ import com.example.marisa.persistence.utils.DatabaseConnectionFactory;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class DAOCashier implements DAO<Cashier, Integer> {
 
     @Override
-    public Optional<Cashier> select(Integer key) {
+    public Optional<Cashier> select(Integer id) {
         String sql = "SELECT id, openingBalance, finalBalance, status FROM cashier WHERE id = ?";
         Cashier cashier = null;
 
         try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
+            stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
             cashier = getEntityFromResultSet(rs);
 
@@ -28,12 +30,30 @@ public class DAOCashier implements DAO<Cashier, Integer> {
     }
 
     @Override
-    public void save(Cashier cashier) {
-        String sql = "INSERT INTO cashier (openingBalance, status) VALUES (?,?)";
+    public List<Cashier> selectAll() {
+        String sql = "SELECT * FROM cashier";
+        List<Cashier> cashiers = new ArrayList<>();
 
         try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
-            stmt.setDouble(1, cashier.getOpeningBalance());
-            stmt.setString(2, cashier.getStatus().name());
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                Cashier cashier = getEntityFromResultSet(rs);
+                cashiers.add(cashier);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cashiers;
+    }
+
+    @Override
+    public void save(Cashier cashier) {
+        String sql = "INSERT INTO cashier (id, openingBalance, status) VALUES (?,?,?)";
+
+        try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
+            stmt.setDouble(1, cashier.getId());
+            stmt.setDouble(2, cashier.getOpeningBalance());
+            stmt.setString(3, cashier.getStatus().name());
 
             stmt.executeUpdate();
 
@@ -73,7 +93,7 @@ public class DAOCashier implements DAO<Cashier, Integer> {
     }
 
     public Cashier selectClosedCashier() {
-        String sql = "SELECT id, openingBalance, finalBalance, status FROM cashier WHERE status = 'CLOSED'";
+        String sql = "SELECT id, openingBalance, finalBalance, status FROM cashier WHERE status = 'CLOSED' LIMIT 1";
         Cashier cashier = null;
 
         try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
@@ -89,8 +109,8 @@ public class DAOCashier implements DAO<Cashier, Integer> {
     public Cashier getEntityFromResultSet(ResultSet rs) throws SQLException {
         return new Cashier(
                 rs.getInt("id"),
-                rs.getFloat("openingBalance"),
-                rs.getFloat("finalBalance"),
+                rs.getDouble("openingBalance"),
+                rs.getDouble("finalBalance"),
                 rs.getString("status"));
     }
 
@@ -107,11 +127,6 @@ public class DAOCashier implements DAO<Cashier, Integer> {
     @Override
     public void delete(Integer key) {
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
-
-    @Override
-    public List<Cashier> selectAll() {
-        throw new UnsupportedOperationException("Unimplemented method 'selectAll'");
     }
 
     @Override

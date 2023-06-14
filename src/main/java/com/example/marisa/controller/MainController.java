@@ -28,7 +28,8 @@ public class MainController {
         //validar status do caixa - mudar disable dos botões
         //se caixa aberto, carregar vendas
     }
-    public void cashierManagement(ActionEvent actionEvent) {
+    public void cashierManagement(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("FXMLCashierManagement");
     }
 
     public void productsManagement(ActionEvent actionEvent) throws IOException {
