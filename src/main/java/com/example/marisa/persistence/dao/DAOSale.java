@@ -19,6 +19,7 @@ public class DAOSale implements DAO<Sale, Integer> {
   @Override
   public void save(Sale entity) {
     // TODO Auto-generated method stub
+
     throw new UnsupportedOperationException("Unimplemented method 'save'");
   }
 
@@ -83,5 +84,18 @@ public class DAOSale implements DAO<Sale, Integer> {
   public List<Sale> selectSalesByProduct(Integer id) {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'selectAll'");
+  }
+
+  public Integer selectLastIdGenerated() {
+    String sql = "SELECT last_insert_rowid() AS last_id FROM sale;";
+    Integer id = null;
+    try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
+      ResultSet rs = stmt.executeQuery();
+      id = rs.getInt("last_id");
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return id;
   }
 }
