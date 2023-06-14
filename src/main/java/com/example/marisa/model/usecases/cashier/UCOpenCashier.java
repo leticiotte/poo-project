@@ -16,22 +16,25 @@ public class UCOpenCashier {
         this.daoCashier = daoCashier;
     }
 
-    public void openCashier(Cashier cashier) throws Exception {
-        Optional<Cashier> dbCashier = this.daoCashier.select(cashier.getId());
+    public void openCashier(Double openingBalance) throws Exception {
+        System.out.println(openingBalance);
 
-        ArrayList<String> params = new ArrayList<>(Arrays.asList("id", "openingBalance", "status"));
-        if (!Validator.validateFields(cashier, params)) {
-            throw new Exception("O Caixa não está com todos os campos obrigatórios preenchidos.");
-        }
+        Cashier dbCashier = this.daoCashier.selectClosedCashier();
 
-        if (cashier.getStatus() == CashierStatusEnum.OPENED) {
-            throw new Exception("O Caixa já está aberto.");
-        }
+        System.out.println(dbCashier);
 
-        if (dbCashier.isEmpty()) {
+        Cashier cashier = null;
+
+        if (dbCashier.getId() == null) {
+            cashier.setId(1);
+            cashier.setStatus(CashierStatusEnum.OPENED);
+            cashier.setOpeningBalance(openingBalance);
             this.daoCashier.save(cashier);
         }
-
-        this.daoCashier.open(cashier);
+        else{
+            dbCashier.setOpeningBalance(openingBalance);
+            dbCashier.setStatus(CashierStatusEnum.OPENED);
+            this.daoCashier.open(cashier);
+        }
     }
 }
