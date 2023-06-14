@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.marisa.controller.SaleDetails">
+    <children>
+        <AnchorPane prefHeight="70.0" prefWidth="920.0" style="-fx-background-color: #C3C49E;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label layoutX="79.0" layoutY="24.0" text="Venda" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="14.0">
+                    <font>
+                        <Font size="35.0" />
+                    </font>
+                </Label>
+                <Button fx:id="btnBack" layoutX="768.0" layoutY="22.0" mnemonicParsing="false" onAction="#backToPreviousScene" prefHeight="26.0" prefWidth="126.0" text="Voltar" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="22.0" />
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutY="68.0" prefHeight="672.0" prefWidth="920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="68.0">
+            <children>
+                <Label layoutX="25.0" layoutY="14.0" text="Produtos" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="14.0">
+                    <font>
+                        <Font size="19.0" />
+                    </font>
+                </Label>
+                <TableView fx:id="tableView" layoutX="25.0" layoutY="54.0" prefHeight="390.0" prefWidth="870.0" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="54.0">
+                    <columns>
+                        <TableColumn fx:id="cId" prefWidth="98.0" text="Id" />
+                        <TableColumn fx:id="cName" prefWidth="204.0" text="Nome" />
+                        <TableColumn fx:id="cBuyPrice" prefWidth="97.0" text="Preco compra" />
+                        <TableColumn fx:id="cSellPrice" prefWidth="78.0" text="Preco venda" />
+                        <TableColumn fx:id="cQuantity" minWidth="0.0" prefWidth="81.0" text="Quantidade" />
+                        <TableColumn fx:id="cDiscount" prefWidth="76.0" text="Desconto" />
+                        <TableColumn fx:id="cPayablePrice" prefWidth="113.0" text="Preço a ser pago" />
+                        <TableColumn fx:id="cDiscountValue" minWidth="0.0" prefWidth="122.0" text="Valor desconto" />
+                    </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+                </TableView>
+
+
+                <Button fx:id="btnCloseSale" layoutX="779.0" layoutY="24.0" mnemonicParsing="false" onAction="#closeSale" prefHeight="26.0" prefWidth="126.0" text="Finalizar" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0" />
+
+
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

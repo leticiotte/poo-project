@@ -44,7 +44,7 @@ public class ProductController {
                 ucCreateProduct.createProduct(product);
             } catch (Exception e) {
                 e.printStackTrace();
-                showAlert("Erro!", "Erro ao criar produto.", Alert.AlertType.ERROR);
+                showAlert("Erro!", "Erro ao criar produto. " + e.getMessage(), Alert.AlertType.ERROR);
             }
         } else {
             try {
@@ -87,14 +87,35 @@ public class ProductController {
         if (product == null) {
             product = new Product();
         }
-        product.setName(inpName.getText());
-        product.setBuyPrice(Double.parseDouble(inpBuyPrice.getText()));
-        product.setSellPrice(Double.parseDouble(inpSellPrice.getText()));
-        product.setSize(inpSize.getText());
-        product.setFacet(inpFacet.getText());
-        product.setCategory(inpCategory.getText());
-        product.setMinimumStock(Integer.valueOf(inpMinimumStock.getText()));
-        product.setQuantity(Integer.valueOf(inpStock.getText()));
+        if (!inpBuyPrice.getText().isEmpty()) {
+            product.setBuyPrice(Double.parseDouble(inpBuyPrice.getText()));
+        }
+        if (!inpSellPrice.getText().isEmpty()) {
+            product.setSellPrice(Double.parseDouble(inpSellPrice.getText()));
+        }
+        if (!inpSize.getText().isEmpty()) {
+            product.setSize(inpSize.getText());
+        }
+        if (!inpFacet.getText().isEmpty()) {
+            product.setFacet(inpFacet.getText());
+        }
+        if (!inpCategory.getText().isEmpty()) {
+            product.setCategory(inpCategory.getText());
+        }
+        if (!inpMinimumStock.getText().isEmpty()) {
+            product.setMinimumStock(Integer.valueOf(inpMinimumStock.getText()));
+        }
+        if (!inpStock.getText().isEmpty()) {
+            product.setQuantity(Integer.valueOf(inpStock.getText()));
+        }
+
+
+
+
+
+
+
+
     }
 
 

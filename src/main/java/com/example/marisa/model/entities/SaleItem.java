@@ -10,6 +10,14 @@ public class SaleItem {
     public SaleItem() {
     }
 
+    public SaleItem(Product product, Integer quantity, double discount, double payablePrice, double discountValue) {
+        this.product = product;
+        this.quantity = quantity;
+        this.discount = discount;
+        this.payablePrice = payablePrice;
+        this.discountValue = discountValue;
+    }
+
     public Product getProduct() {
         return product;
     }
