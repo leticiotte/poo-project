@@ -32,7 +32,6 @@ public class Main {
     public static UCSaleAddItem ucSaleAddItem;
     public static UCListCashier ucListCashier;
     public static UCOpenCashier ucOpenCashier;
-    public static UCSaleAddItem ucSaleAddItem;
 
     public static void main(String[] args) {
         configureInjection();
