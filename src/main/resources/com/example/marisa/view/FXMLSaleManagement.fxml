@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.marisa.controller.SaleManagmentController">
+    <children>
+        <AnchorPane prefHeight="70.0" prefWidth="920.0" style="-fx-background-color: #C3C49E;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label layoutX="79.0" layoutY="24.0" text="Vendas" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="14.0">
+                    <font>
+                        <Font size="35.0" />
+                    </font>
+                </Label>
+                <Button fx:id="btnBack" layoutX="768.0" layoutY="22.0" mnemonicParsing="false" onAction="#backToPreviousScene" prefHeight="26.0" prefWidth="126.0" text="Voltar" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="22.0" />
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutY="68.0" prefHeight="672.0" prefWidth="920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="68.0">
+            <children>
+                <Line endX="769.0" layoutX="126.0" layoutY="47.0" startX="-100.0" />
+                <Button fx:id="btnAddProduct" layoutX="769.0" layoutY="16.0" mnemonicParsing="false" onAction="#" prefHeight="26.0" prefWidth="126.0" text="Adicionar" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="16.0" />
+                <Button fx:id="btnDelete" layoutX="769.0" layoutY="54.0" mnemonicParsing="false" onAction="#" prefHeight="26.0" prefWidth="126.0" text="Deletar" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="54.0" />
+                <TableView fx:id="tableView" layoutX="61.0" layoutY="87.0" prefHeight="390.0" prefWidth="870.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="87.0">
+                    <columns>
+                        <TableColumn fx:id="cId" prefWidth="98.0" text="Id" />
+                        <TableColumn fx:id="cCashierId" prefWidth="142.0" text="Id do Caixa" />
+                        <TableColumn fx:id="cCustomerCPF" prefWidth="143.0" text="CPF do Cliente" />
+                        <TableColumn fx:id="cTotalValue" prefWidth="99.0" text="Valor total" />
+                        <TableColumn fx:id="cCreationDate" prefWidth="76.0" text="Data" />
+                        <TableColumn fx:id="cDiscount" minWidth="0.0" prefWidth="122.0" text="Valor desconto" />
+                    </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+                </TableView>
+
+
+                <Button fx:id="btnCloseSale" layoutX="779.0" layoutY="24.0" mnemonicParsing="false" onAction="#closeSale" prefHeight="26.0" prefWidth="126.0" text="Finalizar" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="25.0" />
+
+
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
