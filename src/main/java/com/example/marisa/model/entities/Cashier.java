@@ -15,6 +15,8 @@ public class Cashier {
         this.status = CashierStatusEnum.valueOf(status);
     }
 
+    public Cashier(){}
+
     public Integer getId() {
         return id;
     }

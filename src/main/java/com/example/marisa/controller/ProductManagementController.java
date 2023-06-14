@@ -3,7 +3,6 @@ package com.example.marisa.controller;
 import com.example.marisa.view.WindowLoader;
 import com.example.marisa.model.entities.Product;
 import com.example.marisa.model.usecases.product.UCDeleteProduct;
-import com.example.marisa.model.usecases.product.UCListProducts;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +15,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
+
+import static com.example.marisa.main.Main.ucDeleteProduct;
+import static com.example.marisa.main.Main.ucListProducts;
+
 
 public class ProductManagementController {
     @FXML
@@ -40,9 +43,6 @@ public class ProductManagementController {
     private TableColumn<Product, String> cMinimumStock;
     @FXML
     private TableColumn<Product, LocalDate> cCreationDate;
-
-    private UCListProducts ucListProducts;
-    private UCDeleteProduct ucDeleteProduct;
 
     private ObservableList<Product> tableData;
 
@@ -85,16 +85,9 @@ public class ProductManagementController {
     }
 
     private void loadDataAndShow() {
-        List<Product> productList = Arrays.asList(
-                new Product(1, "Camiseta", 29.99, 15.0, 100, "M", "Algodão", "Vestuário", 20, LocalDate.now()),
-                new Product(2, "Calça", 59.99, 30.0, 50, "G", "Jeans", "Vestuário", 10, LocalDate.now()),
-                new Product(3, "Tênis", 99.99, 70.0, 20, "42", "Couro", "Calçados", 5, LocalDate.now())
-        );
+        List<Product> productList = ucListProducts.listProducts();
+        tableData.clear();
         tableData.addAll(productList);
-
-//        List<Product> productList = ucListProducts.listProducts();
-//        tableData.clear();
-//        tableData.addAll(productList);
     }
 
     public void addProduct(ActionEvent actionEvent) throws IOException {
@@ -133,6 +126,16 @@ public class ProductManagementController {
     }
 
     public void search(ActionEvent actionEvent) {
+        String filterText = inpSearch.getCharacters().toString();
+
+        if (filterText.isEmpty()) {
+            loadDataAndShow();
+            return;
+        }
+
+        List<Product> productList = ucListProducts.listProducts("id", filterText);
+        tableData.clear();
+        tableData.addAll(productList);
     }
 
     public void export(ActionEvent actionEvent) {

@@ -10,6 +10,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.time.LocalDate;
+
+import static com.example.marisa.main.Main.ucCreateProduct;
+import static com.example.marisa.main.Main.ucUpdateProduct;
 
 public class ProductController {
     @FXML
@@ -31,19 +35,18 @@ public class ProductController {
 
     private Mode mode;
     private Product product;
-    private UCCreateProduct ucCreateProduct;
-    private UCUpdateProduct ucUpdateProduct;
 
     public void saveOrUpdate(ActionEvent actionEvent) throws IOException {
         getEntityToView();
         if(mode.equals(Mode.CREATE)) {
             try {
+                product.setCreationDate(LocalDate.now());
                 ucCreateProduct.createProduct(product);
             } catch (Exception e) {
+                e.printStackTrace();
                 showAlert("Erro!", "Erro ao criar produto.", Alert.AlertType.ERROR);
             }
-        }
-        else{
+        } else {
             try {
                 ucUpdateProduct.updateProduct(product);
             } catch (Exception e) {

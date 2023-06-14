@@ -19,12 +19,16 @@ public class UCCreateCustomer {
             throw new Exception("Cliente já cadastrado no sistema");
         }
 
-        ArrayList<String> params = new ArrayList<>(Arrays.asList("id", "name", "cpf", "phone", "email", "status",
+        ArrayList<String> params = new ArrayList<>(Arrays.asList("name", "cpf", "phone", "email",
                 "number", "street", "complement", "city", "country", "zipcode"));
 
         if (!Validator.validateFields(customer, params)) {
-            throw new Exception("Cliente não está com todos os campos obrigatórios preenchidos.");
+            throw new Exception("Todos os campos devem ser preenchidos.");
         }
+
+        if(!customer.validateCPF()) throw new Exception("Cpf inválido");
+
+        if(!customer.validateEmail()) throw new Exception("Email inválido.");
 
         this.daoCustomer.save(customer);
     }

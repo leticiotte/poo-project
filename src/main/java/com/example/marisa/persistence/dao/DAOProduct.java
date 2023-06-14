@@ -17,12 +17,12 @@ public class DAOProduct implements DAO<Product, Integer> {
   @Override
   public void save(Product entity) {
     String sql = "INSERT INTO Product(name, sellPrice, buyPrice, quantity, facet, " +
-        "category, minimumStock, size) " +
+        "category, minimumStock, size, creationDate) " +
         "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
       setEntityToPreparedStatement(entity, stmt);
-      stmt.executeQuery();
+      stmt.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -36,7 +36,7 @@ public class DAOProduct implements DAO<Product, Integer> {
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
       setEntityToPreparedStatement(entity, stmt);
       stmt.setInt(9, entity.getId());
-      stmt.executeQuery();
+      stmt.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -54,11 +54,11 @@ public class DAOProduct implements DAO<Product, Integer> {
 
   @Override
   public void delete(Integer key) {
-    String sql = "UPDATE product SET active = false WHERE id = ?";
+    String sql = "UPDATE product SET active = 0 WHERE id = ?";
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
       stmt.setInt(1, key);
-      stmt.executeQuery();
+      stmt.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -66,7 +66,7 @@ public class DAOProduct implements DAO<Product, Integer> {
 
   @Override
   public Optional<Product> select(Integer key) {
-    String sql = "SELECT * FROM product WHERE id = ?";
+    String sql = "SELECT * FROM product WHERE id = ? AND active = 1";
     List<Product> products = new ArrayList<>();
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
@@ -85,7 +85,7 @@ public class DAOProduct implements DAO<Product, Integer> {
 
   @Override
   public List<Product> selectAll() {
-    String sql = "SELECT * FROM product";
+    String sql = "SELECT * FROM product WHERE active = 1";
     List<Product> products = new ArrayList<>();
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
@@ -102,7 +102,7 @@ public class DAOProduct implements DAO<Product, Integer> {
 
   @Override
   public List<Product> selectBy(String field, String value) {
-    String sql = "SELECT * FROM product WHERE " + field + " = ?";
+    String sql = "SELECT * FROM product WHERE " + field + " = ? AND active = 1";
     List<Product> products = new ArrayList<>();
 
     try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
@@ -143,5 +143,6 @@ public class DAOProduct implements DAO<Product, Integer> {
     stmt.setString(6, entity.getCategory());
     stmt.setInt(7, entity.getMinimumStock());
     stmt.setString(8, entity.getSize());
+    stmt.setString(9, entity.getCreationDate().toString());
   }
 }
