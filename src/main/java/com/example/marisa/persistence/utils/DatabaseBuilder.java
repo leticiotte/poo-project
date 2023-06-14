@@ -57,9 +57,8 @@ public class DatabaseBuilder {
         StringBuilder builder = new StringBuilder();
 
         builder.append("CREATE TABLE customer (\n");
-        builder.append("id INTEGER PRIMARY KEY AUTOINCREMENT, \n");
+        builder.append("cpf TEXT PRIMARY KEY, \n");
         builder.append("name TEXT NOT NULL, \n");
-        builder.append("cpf TEXT NOT NULL, \n");
         builder.append("phone TEXT NOT NULL, \n");
         builder.append("email TEXT NOT NULL, \n");
         builder.append("status TEXT NOT NULL, \n");
