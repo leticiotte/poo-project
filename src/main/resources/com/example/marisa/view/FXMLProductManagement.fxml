@@ -25,7 +25,7 @@
         <AnchorPane layoutY="68.0" prefHeight="672.0" prefWidth="920.0" AnchorPane.bottomAnchor="0.0"
                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="68.0">
             <children>
-                <Label layoutX="25.0" layoutY="19.0" text="Nome:" AnchorPane.leftAnchor="25.0"
+                <Label layoutX="25.0" layoutY="19.0" text="ID:" AnchorPane.leftAnchor="25.0"
                        AnchorPane.topAnchor="19.0"/>
                 <TextField fx:id="inpSearch" layoutX="69.0" layoutY="15.0" AnchorPane.leftAnchor="69.0"
                            AnchorPane.topAnchor="15.0"/>

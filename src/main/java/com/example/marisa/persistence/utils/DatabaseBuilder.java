@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DatabaseBuilder {
-
     public void buildDatabaseIfMissing() {
         if (!isDatabaseAvailable()) {
             System.out.println("Database is missing. Building database: \n");
@@ -36,7 +35,7 @@ public class DatabaseBuilder {
     private String createProductTableSql() {
         StringBuilder builder = new StringBuilder();
 
-        builder.append("CREATE TABLE Product (\n");
+        builder.append("CREATE TABLE product (\n");
         builder.append("id INTEGER PRIMARY KEY AUTOINCREMENT, \n");
         builder.append("name TEXT NOT NULL, \n");
         builder.append("sellPrice REAL NOT NULL, \n");
@@ -47,7 +46,7 @@ public class DatabaseBuilder {
         builder.append("category TEXT NOT NULL, \n");
         builder.append("minimumStock INTEGER, \n");
         builder.append("creationDate TEXT, \n");
-        builder.append("active TEXT DEFAULT 'true' NOT NULL");
+        builder.append("active INTEGER DEFAULT 1 NOT NULL");
         builder.append("); \n");
 
         System.out.println(builder);
@@ -68,8 +67,8 @@ public class DatabaseBuilder {
         builder.append("complement TEXT NULL, \n");
         builder.append("city TEXT NOT NULL, \n");
         builder.append("country TEXT NOT NULL, \n");
-        builder.append("zipcode TEXT NOT NULL, ");
-        builder.append("active INTEGER DEFAULT 1 NOT NULL\n");
+        builder.append("zipcode TEXT NOT NULL, \n");
+        builder.append("active INTEGER DEFAULT 1 NOT NULL");
         builder.append("); \n");
 
         System.out.println(builder);

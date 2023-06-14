@@ -37,7 +37,6 @@ public class DAOCustomer implements DAO<Customer, String> {
       stmt.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
-      System.out.println(e);
     }
   }
 
@@ -102,7 +101,7 @@ public class DAOCustomer implements DAO<Customer, String> {
   @Override
   public List<Customer> selectBy(String field, String value) {
     String sql;
-    if(field == "name"){
+    if(field.equals("name")){
       sql = "SELECT * FROM customer WHERE UPPER(name) LIKE '%"+ value +"%' AND active = 1";
     }else{
       sql = "SELECT * FROM customer WHERE " + field + " = ? AND active = 1";
@@ -121,7 +120,7 @@ public class DAOCustomer implements DAO<Customer, String> {
   }
 
   public Customer getEntityFromResultSet(ResultSet rs) throws SQLException {
-    Customer contact = new Customer(
+    return new Customer(
         rs.getString("name"),
         rs.getString("cpf"),
         rs.getString("phone"),
@@ -133,7 +132,6 @@ public class DAOCustomer implements DAO<Customer, String> {
         rs.getString("city"),
         rs.getString("country"),
         rs.getString("zipcode"));
-    return contact;
   }
 
   protected void setEntityToPreparedStatement(Customer entity, PreparedStatement stmt) throws SQLException {

@@ -11,7 +11,8 @@ public class UCCreateProduct {
   }
 
   public void createProduct(Product product) throws Exception {
-    if (this.daoProduct.select(product.getId()).isPresent()) {
+    System.out.println(product.getName() + product.getCategory());
+    if (product.getId() != null && this.daoProduct.select(product.getId()).isPresent()) {
       throw new Exception("Produto já cadastrado no sistema");
     }
 
