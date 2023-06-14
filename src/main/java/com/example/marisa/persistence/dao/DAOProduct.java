@@ -117,6 +117,18 @@ public class DAOProduct implements DAO<Product, Integer> {
     return products;
   }
 
+  public void updateQuantity(Product product) {
+    String sql = "UPDATE Product SET quantity = ? WHERE id = ?";
+
+    try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
+      stmt.setInt(1, product.getQuantity());
+      stmt.setInt(2, product.getId());
+      stmt.executeQuery();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
   public Product getEntityFromResultSet(ResultSet rs) throws SQLException {
     Product contact = new Product(
         rs.getInt("id"),
