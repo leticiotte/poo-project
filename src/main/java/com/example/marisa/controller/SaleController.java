@@ -39,6 +39,20 @@ public class SaleController {
     @FXML
     private void initialize(){
         setInpDiscount();
+        bindTableViewToItemsList();
+        bindColumnsToValueSources();
+        loadDataAndShow();
+    }
+
+    private void bindTableViewToItemsList() {
+    }
+
+    private void bindColumnsToValueSources() {
+        
+    }
+
+    private void loadDataAndShow() {
+        
     }
 
     private void setInpDiscount(){
@@ -53,8 +67,8 @@ public class SaleController {
     }
 
     public void addProduct(ActionEvent actionEvent) {
-//        Sale sale = new Sale();
-//        ucSaleAddItem.saleAddItem();
+        Sale sale = new Sale();
+        ucSaleAddItem.saleAddItem();
     }
 
     public void deleteProduct(ActionEvent actionEvent) {
