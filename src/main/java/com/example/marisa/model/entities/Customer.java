@@ -118,4 +118,63 @@ public class Customer {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public boolean validateCPF() {
+        String cleanCPF = cpf.replaceAll("[^0-9]", "");
+
+        if (cleanCPF.length() != 11) {
+            return false;
+        }
+
+        if (cleanCPF.matches("(\\d)\\1{10}")) {
+            return false;
+        }
+
+        int sum = 0;
+        for (int i = 0; i < 9; i++) {
+            int digit = Character.getNumericValue(cleanCPF.charAt(i));
+            sum += digit * (10 - i);
+        }
+        int remainder = sum % 11;
+        int firstVerificationDigit = (remainder < 2) ? 0 : 11 - remainder;
+        if (Character.getNumericValue(cleanCPF.charAt(9)) != firstVerificationDigit) {
+            return false;
+        }
+
+        sum = 0;
+        for (int i = 0; i < 10; i++) {
+            int digit = Character.getNumericValue(cleanCPF.charAt(i));
+            sum += digit * (11 - i);
+        }
+        remainder = sum % 11;
+        int secondVerificationDigit = (remainder < 2) ? 0 : 11 - remainder;
+        if (Character.getNumericValue(cleanCPF.charAt(10)) != secondVerificationDigit) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public boolean validateEmail() {
+        if (email == null || email.isEmpty()) {
+            return false;
+        }
+
+        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        return email.matches(regex);
+    }
+
+    public boolean validatePhoneNumber() {
+        if (phone == null || phone.isEmpty()) {
+            return false;
+        }
+
+        String cleanPhoneNumber = phone.replaceAll("[^0-9]", "");
+
+        if (cleanPhoneNumber.length() != 11) {
+            return false;
+        }
+
+        return true;
+    }
 }

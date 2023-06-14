@@ -89,7 +89,7 @@ public class CustomerManagementController {
                 ucDeleteCustomer.deleteCustomer(customer.getCpf());
                 loadDataAndShow();
             } catch (Exception e) {
-                showAlert("Erro!", "Erro ao excluir o cliente", Alert.AlertType.ERROR);
+                showAlert("Erro!", "Erro ao excluir o cliente: " + e.getMessage(), Alert.AlertType.ERROR);
             }
         } else {
             showAlert("Erro!", "Nenhum cliente selecionado.", Alert.AlertType.ERROR);

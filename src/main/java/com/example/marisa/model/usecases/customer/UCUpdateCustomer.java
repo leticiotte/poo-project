@@ -16,7 +16,6 @@ public class UCUpdateCustomer {
   }
 
   public void updateCustomer(Customer customer) throws Exception {
-    try{
       ArrayList<String> params = new ArrayList<>(Arrays.asList("name", "cpf", "phone", "email",
               "number", "street", "complement", "city", "country", "zipcode"));
 
@@ -25,12 +24,10 @@ public class UCUpdateCustomer {
       }
 
       Optional<Customer> getCustomer = this.daoCustomer.select(customer.getCpf());
-      if(getCustomer.isEmpty()) throw new Exception("O cpf não pode ser alterado.");
+      if(getCustomer.isEmpty()) throw new Exception("Cpf não pode ser alterado.");
+
+      if(!customer.validateEmail()) throw new Exception("Email inválido.");
 
       this.daoCustomer.saveOrUpdate(customer);
-    }catch(Exception e){
-      System.out.println(e);
-    }
-
   }
 }

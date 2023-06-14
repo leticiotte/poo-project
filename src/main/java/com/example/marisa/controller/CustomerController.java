@@ -42,18 +42,19 @@ public class CustomerController {
         if(mode.equals(Mode.CREATE)) {
             try {
                 ucCreateCustomer.createCustomer(customer);
+                WindowLoader.setRoot("FXMLCustomerManagement");
             } catch (Exception e) {
-                showAlert("Erro!", "Erro ao criar cliente.", Alert.AlertType.ERROR);
+                showAlert("Erro!", "Erro ao criar cliente: " + e.getMessage(), Alert.AlertType.ERROR);
             }
         }
         else{
             try {
                 ucUpdateCustomer.updateCustomer(customer);
+                WindowLoader.setRoot("FXMLCustomerManagement");
             } catch (Exception e) {
-                showAlert("Erro!", "Erro ao atualizar cliente.", Alert.AlertType.ERROR);
+                showAlert("Erro!", "Erro ao atualizar cliente: " + e.getMessage(), Alert.AlertType.ERROR);
             }
         }
-        WindowLoader.setRoot("FXMLCustomerManagement");
     }
 
     public void cancel(ActionEvent actionEvent) throws IOException {
@@ -77,16 +78,38 @@ public class CustomerController {
         if (customer == null) {
             customer = new Customer();
         }
-        customer.setName(inpName.getText());
-        customer.setCpf(inpCpf.getText());
-        customer.setPhone(inpPhone.getText());
-        customer.setEmail(inpEmail.getText());
-        customer.setStreet(inpStreet.getText());
-        customer.setNumber(Integer.valueOf(inpNumber.getText()));
-        customer.setComplement(inpComplement.getText());
-        customer.setCity(inpCity.getText());
-        customer.setCountry(inpCountry.getText());
-        customer.setZipcode(inpZipcode.getText());
+
+        if(!inpName.getText().isEmpty()){
+            customer.setName(inpName.getText());
+        }
+        if (!inpCpf.getText().isEmpty()) {
+            customer.setCpf(inpCpf.getText());
+        }
+        if (!inpPhone.getText().isEmpty()) {
+            customer.setPhone(inpPhone.getText());
+        }
+        if (!inpEmail.getText().isEmpty()) {
+            customer.setEmail(inpEmail.getText());
+        }
+        if (!inpStreet.getText().isEmpty()) {
+            customer.setStreet(inpStreet.getText());
+        }
+        if (!inpNumber.getText().isEmpty()) {
+            customer.setNumber(Integer.valueOf(inpNumber.getText()));
+        }
+        if (!inpComplement.getText().isEmpty()) {
+            customer.setComplement(inpComplement.getText());
+        }
+        if (!inpCity.getText().isEmpty()) {
+            customer.setCity(inpCity.getText());
+        }
+        if (!inpCountry.getText().isEmpty()) {
+            customer.setCountry(inpCountry.getText());
+        }
+        if (!inpZipcode.getText().isEmpty()) {
+            customer.setZipcode(inpZipcode.getText());
+        }
+
     }
 
 
