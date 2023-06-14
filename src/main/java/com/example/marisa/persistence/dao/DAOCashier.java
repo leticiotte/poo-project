@@ -63,12 +63,13 @@ public class DAOCashier implements DAO<Cashier, Integer> {
     }
 
     public void open(Cashier cashier) {
-        String sql = "UPDATE cashier SET openingBalance = ?, status = ? WHERE id = ?";
+        String sql = "UPDATE cashier SET openingBalance = ?, status = ?, finalBalance = ? WHERE id = ?";
 
         try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
             stmt.setDouble(1, cashier.getOpeningBalance());
             stmt.setString(2, cashier.getStatus().name());
-            stmt.setInt(3, cashier.getId());
+            stmt.setDouble(3, cashier.getFinalBalance());
+            stmt.setInt(4, cashier.getId());
 
             stmt.executeUpdate();
 
@@ -90,22 +91,6 @@ public class DAOCashier implements DAO<Cashier, Integer> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public Cashier selectClosedCashier() {
-        String sql = "SELECT id, openingBalance, finalBalance, status FROM cashier WHERE status = 'CLOSED' LIMIT 1";
-        Cashier cashier = null;
-
-        try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
-            ResultSet rs = stmt.executeQuery();
-
-            if(rs.next()) cashier = getEntityFromResultSet(rs);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        System.out.printf("Estou no return");
-        return cashier;
     }
 
     public Cashier selectById(Integer id){
