@@ -4,12 +4,14 @@ import com.example.marisa.model.usecases.customer.UCCreateCustomer;
 import com.example.marisa.model.usecases.customer.UCDeleteCustomer;
 import com.example.marisa.model.usecases.customer.UCListCustomers;
 import com.example.marisa.model.usecases.customer.UCUpdateCustomer;
+import com.example.marisa.model.usecases.sale.UCSaleAddItem;
 import com.example.marisa.persistence.dao.DAOCustomer;
 import com.example.marisa.model.usecases.product.UCCreateProduct;
 import com.example.marisa.model.usecases.product.UCDeleteProduct;
 import com.example.marisa.model.usecases.product.UCListProducts;
 import com.example.marisa.model.usecases.product.UCUpdateProduct;
 import com.example.marisa.persistence.dao.DAOProduct;
+import com.example.marisa.persistence.dao.DAOSale;
 import com.example.marisa.persistence.utils.DatabaseBuilder;
 import com.example.marisa.view.WindowLoader;
 
@@ -22,6 +24,7 @@ public class Main {
     public static UCDeleteProduct ucDeleteProduct;
     public static UCCreateProduct ucCreateProduct;
     public static UCUpdateProduct ucUpdateProduct;
+    public static UCSaleAddItem ucSaleAddItem;
 
     public static void main(String[] args) {
         configureInjection();
@@ -46,5 +49,8 @@ public class Main {
         ucDeleteProduct = new UCDeleteProduct(daoProduct);
         ucCreateProduct = new UCCreateProduct(daoProduct);
         ucUpdateProduct = new UCUpdateProduct(daoProduct);
+
+        DAOSale daoSale = new DAOSale();
+        new UCSaleAddItem(daoSale);
     }
 }

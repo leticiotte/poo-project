@@ -83,6 +83,7 @@ public class DatabaseBuilder {
 
         builder.append("CREATE TABLE sale (\n");
         builder.append("id INTEGER PRIMARY KEY AUTOINCREMENT, \n");
+        builder.append("cashierId TEXT, \n");
         builder.append("customerCpf TEXT, \n");
         builder.append("date TEXT, \n");
         builder.append("totalPayablePrice REAL, \n");
@@ -90,7 +91,7 @@ public class DatabaseBuilder {
         builder.append("paymentType TEXT, \n");
         builder.append("nf TEXT, \n");
         builder.append("saleStatus TEXT, \n");
-        builder.append("FOREIGN KEY (cashierId) REFERENCES Cashiers (id), \n");
+        builder.append("FOREIGN KEY (cashierId) REFERENCES cashier (id), \n");
         builder.append("FOREIGN KEY (customerCpf) REFERENCES Customers (cpf) \n");
         builder.append("); \n");
 
