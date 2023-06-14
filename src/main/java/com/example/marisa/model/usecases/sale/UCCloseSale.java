@@ -11,13 +11,10 @@ public class UCCloseSale {
         this.daoSale = daoSale;
     }
 
-    public void closeSale(Sale sale, PaymentMethodTypeEnum paymentType) throws Exception {
-        if (!sale.isProductsStockValid()) {
-            throw new Exception("Produto(s) com estoque indisponível.");
-        }
-
+    public String closeSale(Sale sale, PaymentMethodTypeEnum paymentType) throws Exception {
         sale.closeSale(paymentType);
 
         this.daoSale.save(sale);
+        return sale.getNf();
     }
 }
