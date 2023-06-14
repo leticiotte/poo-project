@@ -1,7 +1,6 @@
 package com.example.marisa.persistence.dao;
 
 import com.example.marisa.model.entities.Cashier;
-import com.example.marisa.model.entities.Sale;
 import com.example.marisa.persistence.utils.DAO;
 import com.example.marisa.persistence.utils.DatabaseConnectionFactory;
 
@@ -71,6 +70,20 @@ public class DAOCashier implements DAO<Cashier, Integer> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Cashier selectClosedCashier() {
+        String sql = "SELECT id, openingBalance, finalBalance, status FROM cashier WHERE status = 'CLOSED'";
+        Cashier cashier = null;
+
+        try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            cashier = getEntityFromResultSet(rs);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cashier;
     }
 
     public Cashier getEntityFromResultSet(ResultSet rs) throws SQLException {
