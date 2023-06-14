@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.marisa.model.entities.Cashier;
-import com.example.marisa.model.entities.Product;
 import com.example.marisa.model.entities.Sale;
 import com.example.marisa.persistence.utils.DAO;
 import com.example.marisa.persistence.utils.DatabaseConnectionFactory;
@@ -51,6 +49,20 @@ public class DAOSale implements DAO<Sale, Integer> {
   public List<Sale> selectAll() {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'selectAll'");
+  }
+
+  public void updateSaleStatus(Integer saleId, String status){
+    String sql = "UPDATE sale SET saleStatus = ? WHERE id = ?";
+
+    try (PreparedStatement stmt = DatabaseConnectionFactory.createPreparedStatement(sql)) {
+      stmt.setString(1, status);
+      stmt.setInt(2, saleId);
+
+      stmt.executeUpdate();
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   public List<Sale> selectCashierSales(int cashierId, Date date) {
