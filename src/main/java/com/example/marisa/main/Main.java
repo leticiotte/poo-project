@@ -63,6 +63,6 @@ public class Main {
         ucOpenCashier = new UCOpenCashier(daoCashier);
 
         DAOSale daoSale = new DAOSale();
-        new UCSaleAddItem(daoSale);
+        ucSaleAddItem = new UCSaleAddItem(daoSale);
     }
 }
