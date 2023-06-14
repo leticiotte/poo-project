@@ -65,6 +65,6 @@ public class Main {
         ucCloseCashier = new UCCloseCashier(daoCashier);
 
         DAOSale daoSale = new DAOSale();
-        new UCSaleAddItem(daoSale);
+        ucSaleAddItem = new UCSaleAddItem(daoSale);
     }
 }

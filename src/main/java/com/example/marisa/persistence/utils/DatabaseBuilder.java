@@ -24,7 +24,7 @@ public class DatabaseBuilder {
             stmt.addBatch(createCustomerTableSql());
             stmt.addBatch(createSaleTableSql());
             stmt.addBatch(createSaleItemTableSql());
-            stmt.addBatch(createSaleItemTrigger());
+//            stmt.addBatch(createSaleItemTrigger());
             stmt.addBatch(createChargeBackTableSql());
             stmt.addBatch(createSaleChargeBackTableSql());
             stmt.executeBatch();
@@ -83,7 +83,7 @@ public class DatabaseBuilder {
 
         builder.append("CREATE TABLE sale (\n");
         builder.append("id INTEGER PRIMARY KEY AUTOINCREMENT, \n");
-        builder.append("cashierId TEXT, \n");
+        builder.append("cashierId INTEGER, \n");
         builder.append("customerCpf TEXT, \n");
         builder.append("date TEXT, \n");
         builder.append("totalPayablePrice REAL, \n");
@@ -92,7 +92,7 @@ public class DatabaseBuilder {
         builder.append("nf TEXT, \n");
         builder.append("saleStatus TEXT, \n");
         builder.append("FOREIGN KEY (cashierId) REFERENCES cashier (id), \n");
-        builder.append("FOREIGN KEY (customerCpf) REFERENCES Customers (cpf) \n");
+        builder.append("FOREIGN KEY (customerCpf) REFERENCES customer (cpf) \n");
         builder.append("); \n");
 
         System.out.println(builder);
@@ -111,6 +111,7 @@ public class DatabaseBuilder {
         builder.append("quantity INTEGER,");
         builder.append("payablePrice REAL,");
         builder.append("discountValue REAL,");
+        builder.append("refund INTEGER DEFAULT 0,");
         builder.append("FOREIGN KEY (saleId) REFERENCES sale(id),");
         builder.append("FOREIGN KEY (productId) REFERENCES product(id)");
         builder.append(");");
@@ -119,37 +120,32 @@ public class DatabaseBuilder {
         return builder.toString();
     }
 
-    private String createSaleItemTrigger(){
-        // Trigger para atualizar o valor de totalPayablePrice e totalDiscount
-        // da Sale a cada inserção ou remoção de item na compra
-        // além de atualizar o estoque na tabela Product
-        StringBuilder builder = new StringBuilder();
-
-        builder.append("CREATE TRIGGER update_sale_totals ");
-        builder.append("AFTER INSERT OR DELETE ON sale_item ");
-        builder.append("FOR EACH ROW ");
-        builder.append("BEGIN ");
-        builder.append("UPDATE sale ");
-        builder.append("SET totalPayablePrice = (");
-        builder.append("SELECT SUM(payablePrice) ");
-        builder.append("FROM sale_item ");
-        builder.append("WHERE saleId = NEW.saleId");
-        builder.append("), ");
-        builder.append("totalDiscount = (");
-        builder.append("SELECT SUM(discountValue) ");
-        builder.append("FROM sale_item ");
-        builder.append("WHERE saleId = NEW.saleId");
-        builder.append("); ");
-        builder.append("UPDATE product ");
-        builder.append("SET quantity = quantity + (");
-        builder.append("CASE WHEN NEW.quantity IS NOT NULL THEN NEW.quantity ELSE -OLD.quantity END");
-        builder.append(") ");
-        builder.append("WHERE id = (SELECT productId FROM sale_item WHERE id = NEW.id); ");
-        builder.append("END;");
-
-        System.out.println(builder);
-        return builder.toString();
-    }
+//    private String createSaleItemTrigger(){
+//        // Trigger para atualizar o valor de totalPayablePrice e totalDiscount
+//        // da Sale a cada inserção ou remoção de item na compra
+//        // além de atualizar o estoque na tabela Product
+//        StringBuilder builder = new StringBuilder();
+//
+//        builder.append("CREATE TRIGGER update_sale_totals ");
+//        builder.append("AFTER INSERT OR DELETE ON sale_item ");
+//        builder.append("FOR EACH ROW ");
+//        builder.append("BEGIN ");
+//        builder.append("UPDATE sale ");
+//        builder.append("SET totalPayablePrice = (");
+//        builder.append("SELECT SUM(payablePrice) ");
+//        builder.append("FROM sale_item ");
+//        builder.append("WHERE saleId = NEW.saleId");
+//        builder.append("), ");
+//        builder.append("totalDiscount = (");
+//        builder.append("SELECT SUM(discountValue) ");
+//        builder.append("FROM sale_item ");
+//        builder.append("WHERE saleId = NEW.saleId");
+//        builder.append("); ");
+//        builder.append("END;");
+//
+//        System.out.println(builder);
+//        return builder.toString();
+//    }
 
     private String createCashierTableSql() {
         StringBuilder builder = new StringBuilder();
